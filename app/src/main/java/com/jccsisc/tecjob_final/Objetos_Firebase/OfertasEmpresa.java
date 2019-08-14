@@ -2,7 +2,7 @@ package com.jccsisc.tecjob_final.Objetos_Firebase;
 
 public class OfertasEmpresa
 {
-    String fecha_publicada,nombre_puesto,turno, empresa, uid_empresa, foto, status,path;
+    String fecha_publicada,nombre_puesto,turno, empresa, uid_empresa, foto, status;
 
     public  OfertasEmpresa(){}
 

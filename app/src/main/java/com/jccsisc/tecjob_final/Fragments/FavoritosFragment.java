@@ -54,6 +54,7 @@ public class FavoritosFragment extends Fragment {
         favorito_adapter = new Favoritos_Adapter(ofertasEmpresa, getActivity(), R.layout.cardview_empresas);
         recyclerEmpresas.setAdapter(favorito_adapter);
 
+        getFavoritos();
         return view;
     }
 
