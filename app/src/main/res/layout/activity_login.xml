@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/LogoConfirmar"
+        android:layout_width="280sp"
+        android:layout_height="220sp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/logotecgold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <ScrollView
+        android:id="@+id/scrollViewLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_Top_Schroll_login_70"
+        android:layout_marginBottom="@dimen/marginBottom_SchrollLogin_5"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LogoConfirmar">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/paddin_Cammpos_Login_30">
+
+
+            <!--Agrupamos los componentes de entrada de datos-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/EditTextGray">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editText_Correo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/correo_Usuario"
+                    android:inputType="textEmailAddress" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_Top_Campo_psw_30"
+                android:theme="@style/EditTextGray">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editText_Password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:maxLength="16" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/textView_RecuperaPssw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:padding="@dimen/padding_5"
+                android:shadowColor="@color/colorPrimary"
+                android:shadowDx="8"
+                android:shadowDy="8"
+                android:shadowRadius="15"
+                android:text="@string/textView_Toast_Recupera"
+                android:textColor="@android:color/black" />
+
+            <Button
+                android:id="@+id/btnVw_login"
+                android:layout_width="@dimen/width_btn_login_250"
+                android:layout_height="@dimen/width_btn_modify_40"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/marginStart_btn_perfil_10"
+                android:layout_marginBottom="@dimen/marginTop_Perfil_30"
+                android:background="@drawable/selecter_btn_login"
+                android:shadowColor="@android:color/black"
+                android:shadowDx="8"
+                android:shadowDy="8"
+                android:shadowRadius="15"
+                android:text="@string/btn_login"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/font_Size_txtContacto_17" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

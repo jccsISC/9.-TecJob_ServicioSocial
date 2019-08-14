@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView_imgEmpresa"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_cardEmpresas_245"
+    android:layout_marginTop="@dimen/marginTop_cardEmpresa_15"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <!--con centerCrop la imagen no se distorciona-->
+        <ImageView
+            android:id="@+id/imgVw_empresaCard"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_img_empresa_170"
+            android:background="@drawable/sams"
+            android:padding="@dimen/padding_imgEmpresa_3"
+            android:scaleType="centerCrop"
+            android:contentDescription="imagen empresa"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_linear_cardEmpre_110"
+            android:orientation="vertical"
+            android:layout_gravity="bottom"
+            >
+
+            <TextView
+                android:id="@+id/txtVw_nomEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/textView_nom_Empresa"
+                android:textColor="@android:color/white"
+                android:paddingStart="@dimen/paddingStart_cardEmpresa_5"
+                android:textStyle="bold"
+                android:background="@color/colorBlack_transparent"
+                android:textSize="@dimen/font_Size_nomEmpresa_24"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <LinearLayout
+                    android:layout_width="318sp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txt_titleVacante"
+                            android:textColor="@color/colorGray1"
+                            android:paddingStart="@dimen/paddingStart_cardEmpresa_5"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:id="@+id/txtVw_nomVacante"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/textView_VacanteDispo"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:paddingStart="@dimen/paddingStart_cardEmpresa_5"
+                            android:textColor="@color/colorGray1"
+                            android:textSize="14sp"
+                            />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dp"
+                            android:layout_marginStart="5sp"
+                            android:text="@string/txt_horario"
+                            android:textColor="@color/colorGray1"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:id="@+id/txtVw_horarioEmpresa"
+                            android:layout_width="145sp"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dp"
+                            android:layout_marginStart="5sp"
+                            android:text="@string/txt_horarioJob"
+                            android:textColor="@color/colorGray1"
+                            />
+
+
+                        <CheckBox
+                            android:id="@+id/checkbox_Favorito"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@drawable/postularse_selecter"
+                            android:layout_marginStart="30sp"
+                            android:checked="false"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:text="@string/txt_fechaPublicado"
+                            android:textColor="@color/colorGray1"
+                            android:paddingStart="@dimen/paddingStart_cardEmpresa_5"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:id="@+id/txtVw_timePublicado"
+                            android:layout_width="150sp"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:layout_marginStart="@dimen/paddingStart_cardEmpresa_5"
+                            android:text="13:05"
+                            android:textColor="@color/colorGray1"
+                            />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingBottom="7sp"
+                    android:gravity="center"
+                    >
+
+
+                    <Button
+                        android:id="@+id/btnVw_GuardarOferta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40sp"
+                        android:background="@drawable/background_tbn_guardar"
+                        android:text="@string/btn_guardarVacant"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp"
+                        android:layout_marginEnd="3sp"
+                        android:layout_marginStart="3sp"
+                        />
+
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_viewLineaContac_1"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimary"
+            />
+    </FrameLayout>
+
+
+</androidx.cardview.widget.CardView>

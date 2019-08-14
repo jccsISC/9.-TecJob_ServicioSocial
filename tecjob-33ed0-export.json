@@ -1,0 +1,57 @@
+{
+  "DB_Alumnos" : {
+    "p3S05mSOxbfGoddsQRPiFQh2Q753" : {
+      "calle" : "San Salvador",
+      "carrera" : "Arquitectura",
+      "colonia" : "Hollywood",
+      "experiencia" : "en ventas, chofer",
+      "fecha" : "26/06/1995",
+      "habilidades" : "Facilidad de palabra",
+      "horariosDispo" : "solo fines de semana",
+      "noControl" : "17021910",
+      "nombre" : "Julio Cesar Camacho Silva",
+      "nss" : "123654987562",
+      "numTel" : "4531260729",
+      "postulaciones" : {
+        "-LSqEmweS-sAU3LfPjkm" : {
+          "Empresa" : "Costco",
+          "puesto" : "Gerente",
+          "status" : "Pendiente"
+        }
+      },
+      "semestre" : "Octavo",
+      "statusTrabajo" : "si",
+      "turno" : "Matutino"
+    }
+  },
+  "DB_Empresas" : {
+    "-LSloRF0M-jmF1xEwFsq" : {
+      "domicilio" : "Puerto Vallarta",
+      "funcionesEmpre" : "Ventas",
+      "nombre" : "Sams Club Puerto Vallarta",
+      "ofertas" : {
+        "Arquitectura" : [ "-LSqEmweS-sAU3LfPjkm" ]
+      },
+      "razonSocial" : "Super Mercado"
+    }
+  },
+  "DB_Ofertas" : {
+    "Arquitectura" : {
+      "-LSqEmweS-sAU3LfPjkm" : {
+        "contacto" : 3221974733,
+        "desc_puesto" : "Descripcion",
+        "fecha_publicada" : "13/07/2019",
+        "habilidades" : "Habilidades",
+        "nombre_puesto" : "Gerente",
+        "postulados" : {
+          "p3S05mSOxbfGoddsQRPiFQh2Q753" : {
+            "status" : "Pendiente"
+          }
+        },
+        "requisitos" : "Requisitos",
+        "salario_diario" : 350,
+        "turno" : "Vespertino"
+      }
+    }
+  }
+}

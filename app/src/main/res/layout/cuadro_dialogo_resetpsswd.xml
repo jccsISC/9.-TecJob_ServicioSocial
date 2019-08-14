@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_recuperaContra"
+        android:textSize="@dimen/font_Size_login_23"
+        android:layout_gravity="center"
+        android:textColor="@color/colorGray1"
+        />
+
+    <View
+        android:layout_width="@dimen/width_viewLineaContac_315"
+        android:layout_height="@dimen/height_viewLineaContac_1"
+        android:layout_gravity="center"
+        android:shadowRadius="20"
+        android:shadowDx="10"
+        android:shadowDy="10"
+        android:background="@color/colorPrimary"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_nota"
+        android:textSize="13sp"
+        android:layout_gravity="start"
+        android:layout_marginTop="@dimen/margin_Recupera_nota_10"
+        android:layout_marginStart="@dimen/margin_Recupera_nota_10"
+        android:textColor="@android:color/holo_red_light"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_nuevaContra"
+        android:textSize="12sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_Recupera_nota_10"
+        android:layout_marginStart="@dimen/margin_Recupera_nota_10"
+        android:layout_marginEnd="@dimen/margin_Recupera_nota_10"
+        android:textColor="@color/colorGray1"
+        />
+
+    <!--Agrupamos los componentes de entrada de datos-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/EditTextGray"
+        android:layout_marginTop="@dimen/marginTop_campo_email_reset_40"
+        android:layout_marginStart="@dimen/marginStart_camporeset_15"
+        android:layout_marginEnd="@dimen/marginStart_camporeset_15"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText_Correo_Reset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/correo_Usuario"
+            android:inputType="textEmailAddress"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/btnVw_reset"
+        android:layout_width="@dimen/width_btn_login_250"
+        android:layout_height="@dimen/width_btn_modify_40"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/marginStart_btn_perfil_10"
+        android:layout_marginBottom="@dimen/marginTop_Perfil_30"
+        android:background="@drawable/background_tbn_login"
+        android:shadowRadius="15"
+        android:shadowDx="8"
+        android:shadowDy="8"
+        android:shadowColor="@android:color/black"
+        android:text="@string/btn_reset"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_Size_txtContacto_17" />
+
+
+</LinearLayout>

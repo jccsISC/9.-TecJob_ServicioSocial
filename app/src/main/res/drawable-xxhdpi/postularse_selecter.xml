@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--cuando no está seleccionado-->
+    <item android:drawable="@drawable/ic_postulate_null"
+        android:state_checked="false"></item>
+
+    <!--una vez seleccionado seleccionado-->
+    <item android:drawable="@drawable/ic_postulate_si"
+        android:state_checked="true"></item>
+
+    <!--cuando esta en su estado por defecto-->
+    <item android:drawable="@drawable/ic_postulate_null"></item>
+
+</selector>

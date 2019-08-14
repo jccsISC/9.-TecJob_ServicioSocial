@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#d9ad26</color>
+    <color name="colorPrimaryDark">#d9ad26</color>
+    <color name="colorAccent">#353535</color>
+
+    <color name="color_btn1_center_confirmar">#FFD54F</color>
+    <color name="color_btn1_center_animaci">#d9ad26</color>
+    <color name="color_btn1_startColor_confirmar">#A87508</color>
+    <color name="color_btn2_center_confirmar">#F3C436</color>
+    <color name="color_btn2_startColor_confirmar">#1B1212</color>
+    <color name="color_btn_iniciarSecion">#A57E08</color>
+    <color name="color_btn1_iniciarSecion">#795A01</color>
+    <color name="editText_colorGray">#584F4F</color>
+    <color name="colorBlack_transparente">#2F3C3A3A</color>
+    <color name="colorBlack_transparent">#6F000000</color>
+    <color name="colorGray1">#757575</color>
+    <color name="colorGray2">#BDBDBD</color>
+    <color name="colorGray3">#E0E0E0</color>
+    <color name="bacground_coordinatorLayout">#FFFFFF</color>
+    <color name="background_Card">#53292929</color>
+    <color name="background_btn_guardar">#D7A28D8D</color>
+</resources>
