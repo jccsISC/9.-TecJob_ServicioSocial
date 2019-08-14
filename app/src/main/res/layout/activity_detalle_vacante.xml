@@ -283,7 +283,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/marginStart_btn_perfil_10"
                     android:layout_marginBottom="@dimen/marginTop_Perfil_30"
-                    android:background="@drawable/background_tbn_login"
+                    android:background="@drawable/selecter_btn_login"
                     android:shadowRadius="15"
                     android:shadowDx="8"
                     android:shadowDy="8"

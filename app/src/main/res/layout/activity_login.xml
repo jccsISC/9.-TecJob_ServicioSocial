@@ -26,28 +26,26 @@
 
     <ScrollView
         android:id="@+id/scrollViewLogin"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_Top_Schroll_login_70"
-        android:layout_marginBottom="@dimen/marginBottom_SchrollLogin_5"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LogoConfirmar">
+        app:layout_constraintTop_toBottomOf="@+id/LogoConfirmar"
+        app:layout_constraintVertical_bias="0.546">
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="@dimen/paddin_Cammpos_Login_30">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
 
             <!--Agrupamos los componentes de entrada de datos-->
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
+                android:layout_width="350sp"
                 android:layout_height="wrap_content"
                 android:theme="@style/EditTextGray">
 
@@ -55,7 +53,6 @@
                     android:id="@+id/editText_Correo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="silva.jccs18@gmail.com"
                     android:hint="@string/correo_Usuario"
                     android:inputType="textEmailAddress" />
 
@@ -63,16 +60,17 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
+                android:layout_width="350sp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_Top_Campo_psw_30"
-                android:theme="@style/EditTextGray">
+                android:theme="@style/EditTextGray"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorPrimary">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editText_Password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="12345678"
                     android:hint="@string/password"
                     android:inputType="textPassword"
                     android:maxLength="16" />

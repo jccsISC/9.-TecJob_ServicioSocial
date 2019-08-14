@@ -106,7 +106,10 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
                 String id = ofertas_Modelo.get(index).getUid_empresa();
 
                 Intent intent = new Intent(activity, DetalleVacanteActivity.class);
-                intent.putExtra("llave", id);
+
+                intent.putExtra("name", ofertas_Modelo.get(index).getEmpresa());
+                intent.putExtra("vacante",ofertas_Modelo.get(index).getNombre_puesto() );
+                intent.putExtra("turno", ofertas_Modelo.get(index).getTurno());
                 activity.startActivity(intent);
 
             }

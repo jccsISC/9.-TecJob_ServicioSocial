@@ -55,6 +55,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         edt_Contrasena    = findViewById(R.id.editText_Password);
         tv_Recupera       = findViewById(R.id.textView_RecuperaPssw);
 
+
+
         tv_Recupera.setOnClickListener(this);
         btn_Login.setOnClickListener(this);
     }

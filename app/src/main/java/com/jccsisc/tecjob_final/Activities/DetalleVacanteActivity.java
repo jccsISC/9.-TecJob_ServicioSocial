@@ -40,7 +40,14 @@ public class DetalleVacanteActivity extends AppCompatActivity {
 
 
     DatabaseReference myRef;
-    String id;
+    String id = "";
+    String descripcion = "";
+    String name = "";
+    String puesto = "";
+    String sueldo = "";
+    String domicilio = "";
+    String contacto = "";
+    String turno = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +62,13 @@ public class DetalleVacanteActivity extends AppCompatActivity {
 
 
         id = getIntent().getStringExtra("llave");
+        descripcion = getIntent().getStringExtra("descripcion");
+        name = getIntent().getStringExtra("name");
+        puesto = getIntent().getStringExtra("vacante");
+        sueldo = getIntent().getStringExtra("turno");
 
         Toast.makeText(this,id,Toast.LENGTH_SHORT).show();
 
-        myRef = FirebaseDatabase.getInstance().getReference("DB_Ofertas").child(ValidacionUsuario.carreraAlum);
-
-obtenerUsuario(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         img_Empresa      = findViewById(R.id.imgVw_empresaDetalle);
         txt_nomEmpresa   = findViewById(R.id.txtVw_nomEmpresaDetalle);
@@ -75,6 +83,9 @@ obtenerUsuario(FirebaseAuth.getInstance().getCurrentUser().getUid());
         txt_horario      = findViewById(R.id.txtVw_turnoDetalle);
         btn_postulate    = findViewById(R.id.btnVw_postulateDetalle);
 
+        txt_nomEmpresa.setText(name);
+        txt_vacante.setText(puesto);
+
         btn_postulate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,50 +96,10 @@ obtenerUsuario(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
     }
 
-    //Metodo para obtener el usuario de firebase
-    private void obtenerUsuario(String uid) {
-        myRef = FirebaseDatabase.getInstance().getReference("DB_Alumnos").child(uid).child("carrera");
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                obtenerEmpresa(dataSnapshot.getValue().toString());
-                ValidacionUsuario.carreraAlum = dataSnapshot.toString();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-    }//fin metodo obtener usuario
 
 
-    public void obtenerEmpresa(String carrera)
+    public void obtenerEmpresa()
     {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        database.getReference("DB_Ofertas").child(carrera)
-                .orderByChild("uid_empresa")
-                .equalTo(id)
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-
-                            InfoEmpresa uinfo = new InfoEmpresa();
-                            uinfo.setEmpresa(postSnapshot.getValue(InfoEmpresa.class).getEmpresa());
-                            uinfo.setContacto(postSnapshot.getValue(InfoEmpresa.class).getContacto());
-                            uinfo.setDesc_puesto(postSnapshot.getValue(InfoEmpresa.class).getDesc_puesto());
-                            txt_nomEmpresa.setText(uinfo.getEmpresa());
-                            txt_contacto.setText(uinfo.getContacto());
-                            txt_descripcion.setText(uinfo.getDesc_puesto());
-                        }
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
     }
 }

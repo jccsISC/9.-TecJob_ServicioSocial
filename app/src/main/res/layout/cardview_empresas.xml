@@ -52,7 +52,7 @@
                 >
 
                 <LinearLayout
-                    android:layout_width="318sp"
+                    android:layout_width="310sp"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     >
@@ -171,6 +171,8 @@
                         android:text="@string/btn_guardarVacant"
                         android:textColor="@android:color/white"
                         android:textSize="12sp"
+                        android:paddingStart="3dp"
+                        android:paddingEnd="3dp"
                         android:layout_marginEnd="3sp"
                         android:layout_marginStart="3sp"
                         />

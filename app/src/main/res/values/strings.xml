@@ -89,7 +89,7 @@
     <string name="btn_login">Iniciar Sesion</string>
     <string name="txtBottom_Modificar">Modificar</string>
     <string name="imagenEmpresa">Imagen de la empresa</string>
-    <string name="title_activity_menu_principal">Publicaciones</string>
+    <string name="title_activity_menu_principal">TecJob</string>
     <string name="navigation_home">Home</string>
     <string name="navigation_perfil">Perfil</string>
     <string name="nav_header_title">Android Studio</string>

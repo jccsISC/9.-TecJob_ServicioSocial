@@ -90,7 +90,6 @@ public class MenuPrincipalActivity extends AppCompatActivity
                                 .setInterpolator(interpolador)
                                 .start();
 
-                        Snackbar.make(view,"Procesos",Snackbar.LENGTH_SHORT).show();
                         FragmentManager fm = getSupportFragmentManager();
                         fm.beginTransaction().replace(R.id.content_menu, new ProcesosFragment()).commit();
                     }
@@ -107,7 +106,6 @@ public class MenuPrincipalActivity extends AppCompatActivity
                                 .setInterpolator(interpolador)
                                 .start();
 
-                        Snackbar.make(view,"Home",Snackbar.LENGTH_SHORT).show();
                         FragmentManager fm = getSupportFragmentManager();
                         fm.beginTransaction().replace(R.id.content_menu, new HomeFragment()).commit();
                     }
@@ -159,13 +157,13 @@ public class MenuPrincipalActivity extends AppCompatActivity
 
 
     }
-
-    @Override
+/*
+    @Override //es el menu desplegable de la parte derecha
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_principal, menu);
         return true;
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
