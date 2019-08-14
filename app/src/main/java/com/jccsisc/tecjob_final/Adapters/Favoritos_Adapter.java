@@ -143,8 +143,6 @@ public class Favoritos_Adapter extends RecyclerView.Adapter<Favoritos_Adapter.Of
 
                     myRef.child("DB_Alumnos").child(id).child("favoritos").child(uid_empresa).removeValue();
                     //  all("Guardado");*/
-
-
                     Snackbar.make(view,"Removido de Favoritos",Snackbar.LENGTH_SHORT).show();
                 }
 
