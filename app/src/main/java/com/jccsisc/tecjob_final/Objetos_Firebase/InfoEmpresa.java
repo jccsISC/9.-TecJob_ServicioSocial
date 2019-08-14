@@ -5,20 +5,6 @@ public class InfoEmpresa
     String contacto, desc_puesto, domicilio, empresa, fecha_publicada, foto,
            habilidades, nombre_puesto, razon_social, requisitos, salario_mensual,turno;
 
-    public InfoEmpresa(String contacto, String desc_puesto, String domicilio, String empresa, String fecha_publicada, String habilidades, String nombre_puesto, String razon_social, String requisitos, String salario_mensual, String turno) {
-        this.contacto = contacto;
-        this.desc_puesto = desc_puesto;
-        this.domicilio = domicilio;
-        this.empresa = empresa;
-        this.fecha_publicada = fecha_publicada;
-        this.habilidades = habilidades;
-        this.nombre_puesto = nombre_puesto;
-        this.razon_social = razon_social;
-        this.requisitos = requisitos;
-        this.salario_mensual = salario_mensual;
-        this.turno = turno;
-    }
-
     public String getContacto() {
         return contacto;
     }

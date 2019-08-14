@@ -37,7 +37,7 @@ public class DetalleVacanteActivity extends AppCompatActivity {
     private TextView txt_horario;
     private Button btn_postulate;
 
-    InfoEmpresa infoEmpresa;
+
     DatabaseReference myRef;
     String id;
 
@@ -108,16 +108,13 @@ public class DetalleVacanteActivity extends AppCompatActivity {
 
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
-//                    OfertasEmpresa ofertasEmpresa = postSnapshot.getValue(OfertasEmpresa.class);
-//                    ofertasEmpresa.setUid_empresa(postSnapshot.getKey().toString());
-
-
-                    infoEmpresa = postSnapshot.getValue(InfoEmpresa.class);
-                    txt_nomEmpresa.setText(infoEmpresa.getEmpresa());
-                    txt_contacto.setText(infoEmpresa.getContacto());
-                    txt_descripcion.setText(infoEmpresa.getDesc_puesto());
-
-
+                    InfoEmpresa uinfo = new InfoEmpresa();
+                    uinfo.setEmpresa(postSnapshot.getValue(InfoEmpresa.class).getEmpresa());
+                    uinfo.setContacto(postSnapshot.getValue(InfoEmpresa.class).getContacto());
+                    uinfo.setDesc_puesto(postSnapshot.getValue(InfoEmpresa.class).getDesc_puesto());
+                    txt_nomEmpresa.setText(uinfo.getEmpresa());
+                    txt_contacto.setText(uinfo.getContacto());
+                    txt_descripcion.setText(uinfo.getDesc_puesto());
                 }
 
             }
