@@ -65,7 +65,9 @@ public class FavoritosFragment extends Fragment {
 //    //Metodo para ofertas
     public void getFavoritos(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        database.getReference().child("DB_Alumnos/"+ FirebaseAuth.getInstance().getCurrentUser().getUid() + "/favoritos").addValueEventListener(new ValueEventListener() {
+        database.getReference()
+                .child("DB_Alumnos/"+ FirebaseAuth.getInstance().getCurrentUser().getUid() + "/favoritos")
+                .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ofertasEmpresa.clear();

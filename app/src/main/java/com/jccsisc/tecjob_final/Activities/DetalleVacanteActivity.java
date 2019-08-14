@@ -102,7 +102,7 @@ public class DetalleVacanteActivity extends AppCompatActivity {
     {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-        database.getReference().child("DB_Ofertas").child(carrera).addValueEventListener(new ValueEventListener() {
+        database.getReference("DB_Ofertas").child(carrera).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
