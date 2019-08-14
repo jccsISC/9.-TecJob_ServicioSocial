@@ -13,8 +13,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <!--con centerCrop la imagen no se distorciona-->
         <ImageView

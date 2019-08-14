@@ -55,6 +55,7 @@
                     android:id="@+id/editText_Correo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="silva.jccs18@gmail.com"
                     android:hint="@string/correo_Usuario"
                     android:inputType="textEmailAddress" />
 
@@ -71,6 +72,7 @@
                     android:id="@+id/editText_Password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="12345678"
                     android:hint="@string/password"
                     android:inputType="textPassword"
                     android:maxLength="16" />
