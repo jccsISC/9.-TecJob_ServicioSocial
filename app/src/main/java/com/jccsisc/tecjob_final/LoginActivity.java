@@ -26,6 +26,8 @@ import com.jccsisc.tecjob_final.Activities.MenuPrincipalActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
+
+    //non
     private Button btn_Login;
     private EditText edt_Correo;
     private EditText edt_Contrasena;
