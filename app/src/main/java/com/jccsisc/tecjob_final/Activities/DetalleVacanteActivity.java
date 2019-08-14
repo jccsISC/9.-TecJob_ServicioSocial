@@ -101,28 +101,30 @@ public class DetalleVacanteActivity extends AppCompatActivity {
     public void obtenerEmpresa(String carrera)
     {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
+        database.getReference("DB_Ofertas").child(carrera)
+                .orderByChild("uid_empresa")
+                .equalTo(id)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        database.getReference("DB_Ofertas").child(carrera).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                            InfoEmpresa uinfo = new InfoEmpresa();
+                            uinfo.setEmpresa(postSnapshot.getValue(InfoEmpresa.class).getEmpresa());
+                            uinfo.setContacto(postSnapshot.getValue(InfoEmpresa.class).getContacto());
+                            uinfo.setDesc_puesto(postSnapshot.getValue(InfoEmpresa.class).getDesc_puesto());
+                            txt_nomEmpresa.setText(uinfo.getEmpresa());
+                            txt_contacto.setText(uinfo.getContacto());
+                            txt_descripcion.setText(uinfo.getDesc_puesto());
+                        }
 
-                    InfoEmpresa uinfo = new InfoEmpresa();
-                    uinfo.setEmpresa(postSnapshot.getValue(InfoEmpresa.class).getEmpresa());
-                    uinfo.setContacto(postSnapshot.getValue(InfoEmpresa.class).getContacto());
-                    uinfo.setDesc_puesto(postSnapshot.getValue(InfoEmpresa.class).getDesc_puesto());
-                    txt_nomEmpresa.setText(uinfo.getEmpresa());
-                    txt_contacto.setText(uinfo.getContacto());
-                    txt_descripcion.setText(uinfo.getDesc_puesto());
-                }
+                    }
 
-            }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+                    }
+                });
     }
 }
