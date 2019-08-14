@@ -57,7 +57,7 @@ public class DetalleVacanteActivity extends AppCompatActivity {
         myRef = FirebaseDatabase.getInstance().getReference("DB_Ofertas").child(ValidacionUsuario.carreraAlum);
         obtenerEmpresa(id);
 
-
+        Toast.makeText(this,id, Toast.LENGTH_SHORT).show();
         img_Empresa      = findViewById(R.id.imgVw_empresaDetalle);
         txt_nomEmpresa   = findViewById(R.id.txtVw_nomEmpresaDetalle);
         txt_razonEmpresa = findViewById(R.id.txtVw_razonSocial);
@@ -102,7 +102,10 @@ public class DetalleVacanteActivity extends AppCompatActivity {
     {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-        database.getReference().child("DB_Ofertas").child(carrera).addValueEventListener(new ValueEventListener() {
+        database.getReference("DB_Ofertas").child(carrera)
+                .orderByChild("uid_empresa")
+                .equalTo(id)
+                .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
