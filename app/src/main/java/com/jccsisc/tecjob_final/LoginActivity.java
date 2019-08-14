@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
     //nonn
-
+//Gggf
     private Button btn_Login;
     private EditText edt_Correo;
     private EditText edt_Contrasena;
