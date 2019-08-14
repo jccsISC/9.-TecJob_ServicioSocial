@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -54,9 +55,12 @@ public class DetalleVacanteActivity extends AppCompatActivity {
 
 
         id = getIntent().getStringExtra("llave");
-        myRef = FirebaseDatabase.getInstance().getReference("DB_Ofertas").child(ValidacionUsuario.carreraAlum);
-        obtenerEmpresa(id);
 
+        Toast.makeText(this,id,Toast.LENGTH_SHORT).show();
+
+        myRef = FirebaseDatabase.getInstance().getReference("DB_Ofertas").child(ValidacionUsuario.carreraAlum);
+
+obtenerUsuario(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         img_Empresa      = findViewById(R.id.imgVw_empresaDetalle);
         txt_nomEmpresa   = findViewById(R.id.txtVw_nomEmpresaDetalle);
@@ -82,7 +86,7 @@ public class DetalleVacanteActivity extends AppCompatActivity {
     }
 
     //Metodo para obtener el usuario de firebase
-    private void obtenerUsario(String uid) {
+    private void obtenerUsuario(String uid) {
         myRef = FirebaseDatabase.getInstance().getReference("DB_Alumnos").child(uid).child("carrera");
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
