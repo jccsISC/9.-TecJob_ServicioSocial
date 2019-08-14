@@ -62,10 +62,9 @@ public class Favoritos_Adapter extends RecyclerView.Adapter<Favoritos_Adapter.Of
     //aqui asignamos los valores a las vistas
     @Override
     public void onBindViewHolder(@NonNull final OfertasViewHolder ofertasViewHolder, int position) {
-
         //optenemos la posicion de la lista
         final OfertasEmpresa empresa_modelo = ofertas_Modelo.get(position);
-        OfertasEmpresa ofertasEmpresa = ofertas_Modelo.get(position);
+//        OfertasEmpresa ofertasEmpresa = ofertas_Modelo.get(position);
 
         ofertasViewHolder.nomEmpresa.setText(empresa_modelo.getEmpresa());
         ofertasViewHolder.nomVacante.setText(empresa_modelo.getNombre_puesto());
@@ -74,13 +73,8 @@ public class Favoritos_Adapter extends RecyclerView.Adapter<Favoritos_Adapter.Of
         ofertasViewHolder.img_empresa.setImageResource(R.drawable.sams);
 
 
-        //con esto detecto al usuario actual
-        mAuth = FirebaseAuth.getInstance();
-        String uid = mAuth.getUid();
-
         //obtenemos la db de firebase
         myRef = FirebaseDatabase.getInstance().getReference();
-
         myStorage = FirebaseStorage.getInstance().getReference();
 
         ofertasViewHolder.cardViewEmpresa.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +101,6 @@ public class Favoritos_Adapter extends RecyclerView.Adapter<Favoritos_Adapter.Of
 
                 if(isChk==true)
                 {
-
                     String fecha_publicada,nombre_puesto,turno, empresa, uid_empresa, foto;
                     empresa = empresa_modelo.getEmpresa();
                     fecha_publicada = empresa_modelo.getFecha_publicada();
@@ -122,29 +115,26 @@ public class Favoritos_Adapter extends RecyclerView.Adapter<Favoritos_Adapter.Of
                     myRef.child("DB_Alumnos").child(id).child("favoritos").child(uid_empresa).setValue(favorito);
                     //  all("Guardado");*/
 
-
                     Snackbar.make(view,"Agregado a Favoritos",Snackbar.LENGTH_SHORT).show();
 
                 }
 
-                if(isChk==false)
-                {
-
-                    String fecha_publicada,nombre_puesto,turno, empresa, uid_empresa, foto;
-                    empresa = empresa_modelo.getEmpresa();
-                    fecha_publicada = empresa_modelo.getFecha_publicada();
-                    nombre_puesto = empresa_modelo.getNombre_puesto();
-                    turno = empresa_modelo.getTurno();
-                    uid_empresa = empresa_modelo.getUid_empresa();
-
-                    String id = mAuth.getUid();//con este le decimos a donde guarde
-
-                    OfertasEmpresa favorito = new OfertasEmpresa(fecha_publicada,nombre_puesto,turno,empresa);
-
-                    myRef.child("DB_Alumnos").child(id).child("favoritos").child(uid_empresa).removeValue();
-                    //  all("Guardado");*/
-                    Snackbar.make(view,"Removido de Favoritos",Snackbar.LENGTH_SHORT).show();
-                }
+//                if(isChk==false)
+//                {
+//
+//                    String fecha_publicada,nombre_puesto,turno, empresa, uid_empresa, foto;
+//                    empresa = empresa_modelo.getEmpresa();
+//                    fecha_publicada = empresa_modelo.getFecha_publicada();
+//                    nombre_puesto = empresa_modelo.getNombre_puesto();
+//                    turno = empresa_modelo.getTurno();
+//                    uid_empresa = empresa_modelo.getUid_empresa();
+//                    String id = mAuth.getUid();//con este le decimos a donde guarde
+//                    OfertasEmpresa favorito = new OfertasEmpresa(fecha_publicada,nombre_puesto,turno,empresa);
+//
+//                    myRef.child("DB_Alumnos").child(id).child("favoritos").child(uid_empresa).removeValue();
+//                    //  all("Guardado");*/
+//                    Snackbar.make(view,"Removido de Favoritos",Snackbar.LENGTH_SHORT).show();
+//                }
 
             }
         });
