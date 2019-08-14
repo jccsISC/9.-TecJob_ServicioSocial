@@ -70,6 +70,7 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+
     //Metodo para obtener el usuario de firebase
     private void obtenerUsario(String uid) {
         myRef = FirebaseDatabase.getInstance().getReference("DB_Alumnos").child(uid).child("carrera");
