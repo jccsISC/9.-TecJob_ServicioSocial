@@ -6,13 +6,7 @@ public class OfertasEmpresa
 
     public  OfertasEmpresa(){}
 
-    public String getUid_oferta() {
-        return uid_oferta;
-    }
 
-    public void setUid_oferta(String uid_oferta) {
-        this.uid_oferta = uid_oferta;
-    }
 
     public OfertasEmpresa(String foto, String fecha_publicada, String nombre_puesto, String turno, String empresa) {
         this.foto = foto;
@@ -22,7 +16,13 @@ public class OfertasEmpresa
         this.empresa = empresa;
     }
 
+    public String getUid_oferta() {
+        return uid_oferta;
+    }
 
+    public void setUid_oferta(String uid_oferta) {
+        this.uid_oferta = uid_oferta;
+    }
 
     public String getFoto() {
         return foto;

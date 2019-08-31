@@ -55,7 +55,7 @@ public class HomeFragment extends Fragment {
         String uid = mAuth.getUid();
 
         //obtenemos la db de firebase
-        obtenerUsario(uid);
+        obtenerUsuario(uid);
 
         //le damos valores al recycler
         RecyclerView recyclerEmpresas = view.findViewById(R.id.rcyVw_empresas);
@@ -72,7 +72,7 @@ public class HomeFragment extends Fragment {
 
 
     //Metodo para obtener el usuario de firebase
-    private void obtenerUsario(String uid) {
+    private void obtenerUsuario(String uid) {
         myRef = FirebaseDatabase.getInstance().getReference("DB_Alumnos").child(uid).child("carrera");
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

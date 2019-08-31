@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,6 +22,8 @@ import com.jccsisc.tecjob_final.Objetos_Firebase.InfoEmpresa;
 import com.jccsisc.tecjob_final.Objetos_Firebase.OfertasEmpresa;
 import com.jccsisc.tecjob_final.R;
 import com.jccsisc.tecjob_final.ValidacionUsuario;
+import com.jccsisc.tecjob_final.VariablesGlobales;
+import com.squareup.picasso.Picasso;
 
 public class DetalleVacanteActivity extends AppCompatActivity {
 
@@ -61,12 +64,6 @@ public class DetalleVacanteActivity extends AppCompatActivity {
 
 
 
-        id = getIntent().getStringExtra("llave");
-        descripcion = getIntent().getStringExtra("descripcion");
-        name = getIntent().getStringExtra("name");
-        puesto = getIntent().getStringExtra("vacante");
-        sueldo = getIntent().getStringExtra("turno");
-
         Toast.makeText(this,id,Toast.LENGTH_SHORT).show();
 
 
@@ -83,8 +80,18 @@ public class DetalleVacanteActivity extends AppCompatActivity {
         txt_horario      = findViewById(R.id.txtVw_turnoDetalle);
         btn_postulate    = findViewById(R.id.btnVw_postulateDetalle);
 
-        txt_nomEmpresa.setText(name);
-        txt_vacante.setText(puesto);
+
+        Picasso.get().load(VariablesGlobales.foto).placeholder(R.drawable.ic_procesos).into(img_Empresa);
+        txt_nomEmpresa.setText(VariablesGlobales.empresa);
+        txt_razonEmpresa.setText(VariablesGlobales.razon_social);
+        txt_contacto.setText(VariablesGlobales.contacto);
+        txt_domicilio.setText(VariablesGlobales.domicilio);
+        txt_vacante.setText(VariablesGlobales.nombre_puesto);
+        txt_descripcion.setText(VariablesGlobales.descripcion_puesto);
+        txt_habilidades.setText(VariablesGlobales.habilidades);
+        txt_requisitos.setText(VariablesGlobales.requisitos);
+        txt_salario.setText(VariablesGlobales.salario_mensual);
+        txt_horario.setText(VariablesGlobales.turno);
 
         btn_postulate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,10 +103,4 @@ public class DetalleVacanteActivity extends AppCompatActivity {
 
     }
 
-
-
-    public void obtenerEmpresa()
-    {
-
-    }
 }
