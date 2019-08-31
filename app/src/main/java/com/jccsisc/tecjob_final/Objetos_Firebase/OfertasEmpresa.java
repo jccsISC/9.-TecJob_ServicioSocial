@@ -2,17 +2,35 @@ package com.jccsisc.tecjob_final.Objetos_Firebase;
 
 public class OfertasEmpresa
 {
-    String fecha_publicada,nombre_puesto,turno, empresa, uid_empresa, foto, status;
+    String fecha_publicada,nombre_puesto,turno, empresa, uid_empresa, foto, status, uid_oferta;
 
     public  OfertasEmpresa(){}
 
-    public OfertasEmpresa(String fecha_publicada, String nombre_puesto, String turno, String empresa) {
+    public String getUid_oferta() {
+        return uid_oferta;
+    }
+
+    public void setUid_oferta(String uid_oferta) {
+        this.uid_oferta = uid_oferta;
+    }
+
+    public OfertasEmpresa(String foto, String fecha_publicada, String nombre_puesto, String turno, String empresa) {
+        this.foto = foto;
         this.fecha_publicada = fecha_publicada;
         this.nombre_puesto = nombre_puesto;
         this.turno = turno;
         this.empresa = empresa;
     }
 
+
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
 
     public String getStatus() {
         return status;
@@ -61,5 +79,17 @@ public class OfertasEmpresa
 
     public void setEmpresa(String empresa) {
         this.empresa = empresa;
+    }
+
+
+    @Override
+    public String toString() {
+        return "OfertasEmpresa{" +
+                "foto='" + foto + '\'' +
+                ", nombre_puesto='" + nombre_puesto + '\'' +
+                ", empresa='" + empresa + '\'' +
+                ", fecha_publicada= '" + fecha_publicada + '\'' +
+                ",turno" + turno+
+                '}';
     }
 }

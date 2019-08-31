@@ -38,6 +38,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.jccsisc.tecjob_final.Objetos_Firebase.Alumno;
 import com.jccsisc.tecjob_final.R;
+import com.squareup.picasso.Picasso;
 
 import java.net.URI;
 import java.util.HashMap;
@@ -117,7 +118,7 @@ public class EditarFragment extends Fragment {
 
         edt_age.setEnabled(false);
         sp_Carrera.setEnabled(false);
-        sp_Carrera.setEnabled(false);
+        sp_Semestre.setEnabled(false);
 
         btn_Imagen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,7 +200,7 @@ public class EditarFragment extends Fragment {
                     String turno        = dataSnapshot.child("turno").getValue().toString();
                     String statusTrabajo= dataSnapshot.child("statusTrabajo").getValue().toString();
                     String nss= dataSnapshot.child("nss").getValue().toString();
-
+                    String foto = dataSnapshot.child("foto").getValue().toString();
 
                     edt_ControlNum.setText(noControl);
                     edt_Name.setText(nombre);
@@ -240,7 +241,8 @@ public class EditarFragment extends Fragment {
                     edt_skills.setText(habilidades);
                     edt_horaDisp.setText(horariosDispo);
                     edt_nss.setText(nss);
-
+                    Picasso.get().load(foto)
+                            .into(btn_Imagen);
                 }
 
             }

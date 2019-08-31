@@ -13,11 +13,11 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imagenInfoPersonal"
+        android:id="@+id/imagenInfoPersonal2"
         android:layout_width="80sp"
         android:layout_height="80sp"
         android:elevation="@dimen/elevation_4"
-        android:src="@drawable/ic_camera"
+        android:src="@drawable/me"
         android:layout_marginStart="@dimen/marginStart_imgDesple_2"
         />
 
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="@string/nav_header_title"
+        android:text="Cargando..."
         android:textColor="@android:color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="12sp"
@@ -40,7 +40,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/noControl"
+            android:text="No. Control: "
             android:textColor="@android:color/white"
             android:textSize="11sp"
             />
@@ -48,7 +48,7 @@
             android:id="@+id/txtVw_noControl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txt_nocontroll"
+            android:text="Cargando..."
             android:textColor="@android:color/white"
             android:layout_marginStart="@dimen/marginStart_txt_desplegable_5"
             android:textSize="11sp"
@@ -74,7 +74,7 @@
             android:id="@+id/txtVw_carrera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txt_carrer"
+            android:text="Cargando..."
             android:textColor="@android:color/white"
             android:layout_marginStart="@dimen/marginStart_txt_desplegable_5"
             android:textSize="10sp"

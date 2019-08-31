@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jccsisc.tecjob_final.R;
 import com.jccsisc.tecjob_final.ValidacionUsuario;
+import com.squareup.picasso.Picasso;
 
 
 public class PerfilFragment extends Fragment {
@@ -34,7 +36,7 @@ public class PerfilFragment extends Fragment {
     //creamos la referencia
     private DatabaseReference myRef;
     FirebaseAuth mAuth;
-
+    private ImageView img_Perfil;
 
     public PerfilFragment() {
         // Required empty public constructor
@@ -68,6 +70,9 @@ public class PerfilFragment extends Fragment {
         sp_Carrera     = view.findViewById(R.id.spVw_Carrera);
         sp_Semestre    = view.findViewById(R.id.spVw_Semestre);
         edt_nss        = view.findViewById(R.id.edtVw_NSS);
+        img_Perfil    = view.findViewById(R.id.imagenInfoPersonal);
+
+        img_Perfil.setEnabled(false);
 
         //creamos un array para llenar el spinner
         String carreras[] = {"ISC","IGEM","ITICS","GASTRONOMIA","ARQUITECTURA","TURISMO","ELECTRO"};
@@ -75,6 +80,7 @@ public class PerfilFragment extends Fragment {
         ArrayAdapter<String> adapter_carreras = new ArrayAdapter<String>(getContext(),R.layout.spinner_item,carreras);
         sp_Carrera.setEnabled(false);
         sp_Carrera.setClickable(false);
+
         this.sp_Carrera.setAdapter(adapter_carreras);
 
         String semestre[] = {"1° Semestre","2° Semestre","3° Semestre","4° Semestre","5° Semestre","6° Semestre","7° Semestre","8° Semestre","9° Semestre"};
@@ -153,7 +159,7 @@ public class PerfilFragment extends Fragment {
                     String turno        = dataSnapshot.child("turno").getValue().toString();
                     String statusTrabajo= dataSnapshot.child("statusTrabajo").getValue().toString();
                     String nss          = dataSnapshot.child("nss").getValue().toString();
-
+                    String foto         = dataSnapshot.child("foto").getValue().toString();
 
                     edt_ControlNum.setText(noControl);
                     edt_Name.setText(nombre);
@@ -194,6 +200,8 @@ public class PerfilFragment extends Fragment {
                     edt_experience.setText(experiencia);
                     edt_skills.setText(habilidades);
                     edt_horaDisp.setText(horariosDispo);
+                    Picasso.get().load(foto)
+                            .into(img_Perfil);
 
                 }
 

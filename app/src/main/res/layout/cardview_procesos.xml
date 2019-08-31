@@ -28,7 +28,7 @@
             >
             <!--con centerCrop la imagen no se distorciona-->
             <ImageView
-                android:id="@+id/imageView_Procesos"
+                android:id="@+id/imageView_EmpresaProcesos"
                 android:layout_width="125dp"
                 android:layout_height="94dp"
                 android:background="@drawable/sams"
@@ -136,7 +136,7 @@
                     android:id="@+id/imageView_EnProceso"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:background="@drawable/correct"
+                    android:background="@drawable/verified"
                     />
 
 
@@ -164,6 +164,7 @@
                     android:layout_marginRight="40dp"
                     />
                 <TextView
+                    android:id="@+id/txt_aceptado_cancelado"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Aceptado"

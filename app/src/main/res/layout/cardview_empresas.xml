@@ -5,7 +5,7 @@
     android:id="@+id/cardView_imgEmpresa"
     android:layout_width="match_parent"
     android:layout_height="@dimen/height_cardEmpresas_245"
-    android:layout_marginTop="@dimen/marginTop_cardEmpresa_15"
+
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
@@ -41,6 +41,7 @@
                 android:textColor="@android:color/white"
                 android:paddingStart="@dimen/paddingStart_cardEmpresa_5"
                 android:textStyle="bold"
+                android:maxLines="1"
                 android:background="@color/colorBlack_transparent"
                 android:textSize="@dimen/font_Size_nomEmpresa_24"
                 />
@@ -68,6 +69,7 @@
                             android:text="@string/txt_titleVacante"
                             android:textColor="@color/colorGray1"
                             android:paddingStart="@dimen/paddingStart_cardEmpresa_5"
+                            android:maxLines="1"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             />
@@ -110,6 +112,7 @@
                             android:textSize="14dp"
                             android:layout_marginStart="5sp"
                             android:text="@string/txt_horarioJob"
+                            android:maxLines="1"
                             android:textColor="@color/colorGray1"
                             />
 

@@ -15,8 +15,8 @@
         android:background="@drawable/background_tbn_borde"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginStart="25dp"
         >
 
         <LinearLayout
@@ -447,7 +447,7 @@
 
             <Button
                 android:id="@+id/btnVw_Save_Perfil"
-                android:layout_width="@dimen/width_btn_modify_150"
+                android:layout_width="@dimen/width_btn_modifyLand_250"
                 android:layout_height="@dimen/width_btn_modify_40"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/marginStart_btn_perfil_10"

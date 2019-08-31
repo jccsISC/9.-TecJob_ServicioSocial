@@ -1,11 +1,7 @@
 package com.jccsisc.tecjob_final.Adapters;
 
 import android.app.Activity;
-import android.app.usage.NetworkStats;
-import android.content.Context;
 import android.content.Intent;
-import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,28 +9,19 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.jccsisc.tecjob_final.Activities.DetalleVacanteActivity;
-import com.jccsisc.tecjob_final.Modelos.Empresa_Modelo;
-import com.jccsisc.tecjob_final.Objetos_Firebase.Alumno;
+import com.jccsisc.tecjob_final.Modelos.Proceso_Modelo;
 import com.jccsisc.tecjob_final.Objetos_Firebase.OfertasEmpresa;
 import com.jccsisc.tecjob_final.R;
 import com.squareup.picasso.Picasso;
@@ -80,23 +67,26 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
 
         //optenemos la posicion de la lista
         final OfertasEmpresa empresa_modelo = ofertas_Modelo.get(position);
-        OfertasEmpresa ofertasEmpresa = ofertas_Modelo.get(position);
+        final OfertasEmpresa ofertasEmpresa = ofertas_Modelo.get(position);
 
         ofertasViewHolder.nomEmpresa.setText(empresa_modelo.getEmpresa());
         ofertasViewHolder.nomVacante.setText(empresa_modelo.getNombre_puesto());
         ofertasViewHolder.horaPublicada.setText(empresa_modelo.getFecha_publicada());
         ofertasViewHolder.turnoVacante.setText(empresa_modelo.getTurno());
         ofertasViewHolder.img_empresa.setImageResource(R.drawable.sams);
-
-
         //con esto detecto al usuario actual
         mAuth = FirebaseAuth.getInstance();
         String uid = mAuth.getUid();
-
         //obtenemos la db de firebase
-        myRef = FirebaseDatabase.getInstance().getReference();
 
+        myRef = FirebaseDatabase.getInstance().getReference();
         myStorage = FirebaseStorage.getInstance().getReference();
+        int index = ofertasViewHolder.getAdapterPosition();
+        final String id = ofertas_Modelo.get(index).getUid_empresa();
+
+
+        Picasso.get().load(empresa_modelo.getFoto())
+                .into(ofertasViewHolder.img_empresa);
 
         ofertasViewHolder.cardViewEmpresa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +96,6 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
                 String id = ofertas_Modelo.get(index).getUid_empresa();
 
                 Intent intent = new Intent(activity, DetalleVacanteActivity.class);
-
                 intent.putExtra("name", ofertas_Modelo.get(index).getEmpresa());
                 intent.putExtra("vacante",ofertas_Modelo.get(index).getNombre_puesto() );
                 intent.putExtra("turno", ofertas_Modelo.get(index).getTurno());
@@ -127,6 +116,7 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
                 {
 
                     String fecha_publicada,nombre_puesto,turno, empresa, uid_empresa, foto;
+                    foto    = empresa_modelo.getFoto();
                     empresa = empresa_modelo.getEmpresa();
                     fecha_publicada = empresa_modelo.getFecha_publicada();
                     nombre_puesto = empresa_modelo.getNombre_puesto();
@@ -135,7 +125,7 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
 
                     String id = mAuth.getUid();//con este le decimos a donde guarde
 
-                    OfertasEmpresa favorito = new OfertasEmpresa(fecha_publicada,nombre_puesto,turno,empresa);
+                    OfertasEmpresa favorito = new OfertasEmpresa(foto,fecha_publicada,nombre_puesto,turno,empresa);
 
                     myRef.child("DB_Alumnos").child(id).child("favoritos").child(uid_empresa).setValue(favorito);
                     //  all("Guardado");*/
@@ -149,15 +139,16 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
                 {
 
                     String fecha_publicada,nombre_puesto,turno, empresa, uid_empresa, foto;
+                    foto    = empresa_modelo.getFoto();
                     empresa = empresa_modelo.getEmpresa();
-                    fecha_publicada = empresa_modelo.getFecha_publicada();
                     nombre_puesto = empresa_modelo.getNombre_puesto();
+                    fecha_publicada = empresa_modelo.getFecha_publicada();
                     turno = empresa_modelo.getTurno();
                     uid_empresa = empresa_modelo.getUid_empresa();
 
                     String id = mAuth.getUid();//con este le decimos a donde guarde
 
-                    OfertasEmpresa favorito = new OfertasEmpresa(fecha_publicada,nombre_puesto,turno,empresa);
+                    OfertasEmpresa favorito = new OfertasEmpresa(foto,fecha_publicada,nombre_puesto,turno,empresa);
 
                     myRef.child("DB_Alumnos").child(id).child("favoritos").child(uid_empresa).removeValue();
                     //  all("Guardado");*/
@@ -178,7 +169,11 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
                 if(isbtnCheck ==true)
                 {
 
-                    Snackbar.make(view,"Postulado",Snackbar.LENGTH_SHORT).show();
+
+                    Proceso_Modelo postulaciones = new Proceso_Modelo();
+                    postulaciones.postularme(empresa_modelo.getFoto(), empresa_modelo.getNombre_puesto(),"postulado", empresa_modelo.getUid_oferta(), empresa_modelo.getEmpresa());
+
+                    myRef.child("DB_Alumnos").child(FirebaseAuth.getInstance().getUid()).child("postulaciones").child(empresa_modelo.getUid_empresa()).setValue(postulaciones);
 
                 }else
                 {

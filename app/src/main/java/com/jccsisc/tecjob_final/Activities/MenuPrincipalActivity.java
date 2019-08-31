@@ -29,7 +29,10 @@ import com.jccsisc.tecjob_final.Fragments.HomeFragment;
 import com.jccsisc.tecjob_final.Fragments.PerfilFragment;
 import com.jccsisc.tecjob_final.Fragments.ProcesosFragment;
 import com.jccsisc.tecjob_final.LoginActivity;
+import com.jccsisc.tecjob_final.Objetos_Firebase.Alumno;
+import com.jccsisc.tecjob_final.Objetos_Firebase.ModeloAlumno;
 import com.jccsisc.tecjob_final.R;
+import com.squareup.picasso.Picasso;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -41,17 +44,21 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MenuPrincipalActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     TextView txt_NoControl, txt_Nombre, txt_Carrera;
+    ImageView imagenInfoPersonal;
     FragmentTransaction fragmentTransaction;
     private DatabaseReference myRef;
     FirebaseAuth mAuth;
 
     boolean click =false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +74,10 @@ public class MenuPrincipalActivity extends AppCompatActivity
 
         //obtenemos la db de firebase
         myRef = FirebaseDatabase.getInstance().getReference();
-        obtenerUsario(uid);
+        obtenerUsuario(uid);
+//        getUserData();
 
-
+        msj(FirebaseAuth.getInstance().getUid());
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,9 +149,51 @@ public class MenuPrincipalActivity extends AppCompatActivity
         txt_Nombre   = headView.findViewById(R.id.txtVw_nombre);
         txt_NoControl= headView.findViewById(R.id.txtVw_noControl);
         txt_Carrera = headView.findViewById(R.id.txtVw_carrera);
+        imagenInfoPersonal = headView.findViewById(R.id.imagenInfoPersonal2);
 
 
+    }//fin OnCreate
+
+//    public void getUserData (){
+//        myRef.getDatabase()
+//                .getReference("DB_Alumnos")
+//                .orderByChild("uid")
+//                .equalTo(FirebaseAuth.getInstance().getUid())
+//                .addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange( DataSnapshot dataSnapshot) {
+//
+//                        showData(dataSnapshot);
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled( DatabaseError databaseError) {
+//
+//                    }
+//                });
+//
+//    }
+//
+//    public void showData(DataSnapshot snapshot){
+//        for(DataSnapshot ds: snapshot.getChildren()){
+//            ModeloAlumno uinfo = new ModeloAlumno();
+//
+//            uinfo.setNombre(ds.getValue(ModeloAlumno.class).getNombre());
+//            uinfo.setFoto(ds.getValue(ModeloAlumno.class).getFoto());
+//            uinfo.setNoControl(ds.getValue(ModeloAlumno.class).getNoControl());
+//            uinfo.setCarrera(ds.getValue(ModeloAlumno.class).getCarrera());
+//
+//            Picasso.get().load(uinfo.getFoto()).into(imagenInfoPersonal);
+//
+//        }
+//    }
+
+    public void msj(String mensaje){
+        Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -157,13 +207,7 @@ public class MenuPrincipalActivity extends AppCompatActivity
 
 
     }
-/*
-    @Override //es el menu desplegable de la parte derecha
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_principal, menu);
-        return true;
-    }*/
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -211,9 +255,9 @@ public class MenuPrincipalActivity extends AppCompatActivity
     }
 
 
-    public void obtenerUsario(String uid)
+    public void obtenerUsuario(String uid)
     {
-        myRef.child("DB_Alumnos").child(uid).addValueEventListener(new ValueEventListener()
+        myRef.child("DB_Alumnos").child(uid).addListenerForSingleValueEvent(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -225,11 +269,15 @@ public class MenuPrincipalActivity extends AppCompatActivity
                     String noControl    = dataSnapshot.child("noControl").getValue().toString();
                     String nombre       = dataSnapshot.child("nombre").getValue().toString();
                     String carrera      = dataSnapshot.child("carrera").getValue().toString();
+                    String foto       = dataSnapshot.child("foto").getValue().toString();
 
 
                     txt_NoControl.setText(noControl);
                     txt_Nombre.setText(nombre);
                     txt_Carrera.setText(carrera);
+                    //msj(foto);
+                    Picasso.get().load(foto)
+                        .into(imagenInfoPersonal);
                 }
 
             }

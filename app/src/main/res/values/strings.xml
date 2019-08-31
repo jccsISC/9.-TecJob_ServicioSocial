@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TecJob_Final</string>
+    <string name="app_name">TecJob</string>
 
     <string name="title_activity_referencia_">Referencia_Activity</string>
     <string name="correo_Usuario">Ingrese su Correo Electrónico</string>

@@ -78,7 +78,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ofertas(dataSnapshot.getValue().toString());
-                ValidacionUsuario.carreraAlum = dataSnapshot.toString();
+                //ValidacionUsuario.carreraAlum = dataSnapshot.toString();
             }
 
             @Override

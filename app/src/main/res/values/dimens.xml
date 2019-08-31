@@ -69,5 +69,6 @@
     <dimen name="height_linear_cardEmpre_110">110sp</dimen>
     <dimen name="radius_card_proceso_4">4sp</dimen>
     <dimen name="margin_Recupera_nota_10">10sp</dimen>
+    <dimen name="width_btn_modifyLand_250">250sp</dimen>
 
 </resources>

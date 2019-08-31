@@ -49,12 +49,9 @@ public class Favoritos_Adapter extends RecyclerView.Adapter<Favoritos_Adapter.Of
     @NonNull
     @Override
     public OfertasViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_empresas,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_favoritos,parent,false);
 
         OfertasViewHolder holder = new OfertasViewHolder(v);
-
-
-
         return holder;
     }
 

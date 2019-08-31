@@ -2,35 +2,62 @@ package com.jccsisc.tecjob_final.Modelos;
 
 public class Proceso_Modelo
 {
-    String nombre, vacante,salario;
+    String foto;
 
-    public Proceso_Modelo(String nombre, String vacante, String salario) {
-        this.nombre = nombre;
-        this.vacante = vacante;
-        this.salario = salario;
+    String empresa;
+
+    String nombre_puesto;
+
+    String status;
+
+    String uid_oferta;
+
+    public String getFoto() {
+        return foto;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public String getNombre_empresa() {
+        return empresa;
     }
 
-    public String getVacante() {
-        return vacante;
+    public void setNombre_empresa(String nombre_empresa) {
+        this.empresa = nombre_empresa;
     }
 
-    public void setVacante(String vacante) {
-        this.vacante = vacante;
+    public String getNombre_puesto() {
+        return nombre_puesto;
     }
 
-    public String getSalario() {
-        return salario;
+    public void setNombre_puesto(String nombre_puesto) {
+        this.nombre_puesto = nombre_puesto;
     }
 
-    public void setSalario(String salario) {
-        this.salario = salario;
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getUid_oferta() {
+        return uid_oferta;
+    }
+
+    public void setUid_oferta(String uid_oferta) {
+        this.uid_oferta = uid_oferta;
+    }
+
+    public void postularme(String foto,String nombre_puesto, String status, String uid_oferta, String empresa){
+        this.foto = foto;
+        this.nombre_puesto = nombre_puesto;
+        this.status = status;
+        this.uid_oferta = uid_oferta;
+        this.empresa = empresa;
+
     }
 }
