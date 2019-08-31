@@ -27,6 +27,7 @@ import com.jccsisc.tecjob_final.Adapters.Empresa_Adapter;
 import com.jccsisc.tecjob_final.Objetos_Firebase.OfertasEmpresa;
 import com.jccsisc.tecjob_final.R;
 import com.jccsisc.tecjob_final.ValidacionUsuario;
+import com.jccsisc.tecjob_final.VariablesGlobales;
 
 import java.util.ArrayList;
 
@@ -90,6 +91,7 @@ public class HomeFragment extends Fragment {
 
     //Metodo para ofertas
     public void ofertas(String carrera){
+        VariablesGlobales.carrera = carrera;
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         database.getReference().child("DB_Ofertas").child(carrera).addValueEventListener(new ValueEventListener() {
@@ -102,7 +104,7 @@ public class HomeFragment extends Fragment {
 
                  //   all(postSnapshot.getKey().toString());
                     OfertasEmpresa ofertasEmpresa = postSnapshot.getValue(OfertasEmpresa.class);
-                    ofertasEmpresa.setUid_empresa(postSnapshot.getKey().toString());
+                    ofertasEmpresa.setUid_empresa(postSnapshot.getKey());
 
                     HomeFragment.this.ofertasEmpresa.add(ofertasEmpresa);
                 }

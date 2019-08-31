@@ -63,10 +63,6 @@ public class DetalleVacanteActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-
-        Toast.makeText(this,id,Toast.LENGTH_SHORT).show();
-
-
         img_Empresa      = findViewById(R.id.imgVw_empresaDetalle);
         txt_nomEmpresa   = findViewById(R.id.txtVw_nomEmpresaDetalle);
         txt_razonEmpresa = findViewById(R.id.txtVw_razonSocial);

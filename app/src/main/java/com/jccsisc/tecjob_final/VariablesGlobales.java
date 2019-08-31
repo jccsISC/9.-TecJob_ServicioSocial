@@ -14,4 +14,5 @@ public class VariablesGlobales {
     public static String salario_mensual = "";
     public static String uid_oferta = "";
     public static String foto = "";
+    public static String carrera = "";
 }

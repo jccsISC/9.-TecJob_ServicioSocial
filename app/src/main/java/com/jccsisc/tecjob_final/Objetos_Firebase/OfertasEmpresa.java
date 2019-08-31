@@ -2,7 +2,7 @@ package com.jccsisc.tecjob_final.Objetos_Firebase;
 
 public class OfertasEmpresa
 {
-    String fecha_publicada,nombre_puesto,turno, empresa, uid_empresa, foto, status, uid_oferta;
+    String fecha_publicada,nombre_puesto,turno, empresa, uid_empresa, foto, status, uid_oferta, razon_social, habilidades, requisitos, domicilio, salario_mensual, contacto, desc_puesto;
 
     public  OfertasEmpresa(){}
 
@@ -14,6 +14,62 @@ public class OfertasEmpresa
         this.nombre_puesto = nombre_puesto;
         this.turno = turno;
         this.empresa = empresa;
+    }
+
+    public String getRazon_social() {
+        return razon_social;
+    }
+
+    public void setRazon_social(String razon_social) {
+        this.razon_social = razon_social;
+    }
+
+    public String getHabilidades() {
+        return habilidades;
+    }
+
+    public void setHabilidades(String habilidades) {
+        this.habilidades = habilidades;
+    }
+
+    public String getRequisitos() {
+        return requisitos;
+    }
+
+    public void setRequisitos(String requisitos) {
+        this.requisitos = requisitos;
+    }
+
+    public String getDomicilio() {
+        return domicilio;
+    }
+
+    public void setDomicilio(String domicilio) {
+        this.domicilio = domicilio;
+    }
+
+    public String getSalario_mensual() {
+        return salario_mensual;
+    }
+
+    public void setSalario_mensual(String salario_mensual) {
+        this.salario_mensual = salario_mensual;
+    }
+
+    public String getContacto() {
+        return contacto;
+    }
+
+    public void setContacto(String contacto) {
+        this.contacto = contacto;
+    }
+
+    public String getDesc_puesto() {
+        return desc_puesto;
+    }
+
+    public void setDesc_puesto(String desc_puesto) {
+        this.desc_puesto = desc_puesto;
     }
 
     public String getUid_oferta() {

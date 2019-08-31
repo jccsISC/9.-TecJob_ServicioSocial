@@ -77,7 +77,7 @@ public class MenuPrincipalActivity extends AppCompatActivity
         obtenerUsuario(uid);
 //        getUserData();
 
-        msj(FirebaseAuth.getInstance().getUid());
+     //   msj(FirebaseAuth.getInstance().getUid());
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

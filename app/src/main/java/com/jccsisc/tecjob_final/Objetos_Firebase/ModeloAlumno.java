@@ -2,7 +2,7 @@ package com.jccsisc.tecjob_final.Objetos_Firebase;
 
 public class ModeloAlumno {
 
-    String calle, carrera, colonia,
+    String uid,status,calle, carrera, colonia,
             experiencia, fecha, habilidades,
             horariosDispo, noControl, nombre,
             nss, numTel, semestre, statusTrabajo,turno, foto;
@@ -10,6 +10,22 @@ public class ModeloAlumno {
 
     public String getFoto() {
         return foto;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setFoto(String foto) {
@@ -126,5 +142,11 @@ public class ModeloAlumno {
 
     public void setTurno(String turno) {
         this.turno = turno;
+    }
+
+    public void postulado(String uid, String status)
+    {
+        this.uid = uid;
+        this.status = status;
     }
 }
