@@ -36,6 +36,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.jccsisc.tecjob_final.Activities.MenuPrincipalActivity;
 import com.jccsisc.tecjob_final.Objetos_Firebase.Alumno;
 import com.jccsisc.tecjob_final.R;
 import com.squareup.picasso.Picasso;
@@ -139,6 +140,8 @@ public class EditarFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 actualizarDatos();
+                Intent intent = new Intent(getContext(), MenuPrincipalActivity.class);
+                startActivity(intent);
             }
         });
 

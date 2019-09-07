@@ -30,6 +30,7 @@
                   android:parentActivityName=".Activities.MenuPrincipalActivity"></activity>
         <activity
             android:name=".Activities.MenuPrincipalActivity"
+         
             android:label="@string/title_activity_menu_principal"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

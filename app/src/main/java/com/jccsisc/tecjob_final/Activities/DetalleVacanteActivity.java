@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,7 +21,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jccsisc.tecjob_final.Fragments.HomeFragment;
+import com.jccsisc.tecjob_final.Modelos.Proceso_Modelo;
 import com.jccsisc.tecjob_final.Objetos_Firebase.InfoEmpresa;
+import com.jccsisc.tecjob_final.Objetos_Firebase.ModeloAlumno;
 import com.jccsisc.tecjob_final.Objetos_Firebase.OfertasEmpresa;
 import com.jccsisc.tecjob_final.R;
 import com.jccsisc.tecjob_final.ValidacionUsuario;
@@ -42,15 +47,8 @@ public class DetalleVacanteActivity extends AppCompatActivity {
     private Button btn_postulate;
 
 
-    DatabaseReference myRef;
-    String id = "";
-    String descripcion = "";
-    String name = "";
-    String puesto = "";
-    String sueldo = "";
-    String domicilio = "";
-    String contacto = "";
-    String turno = "";
+    private DatabaseReference myRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +63,11 @@ public class DetalleVacanteActivity extends AppCompatActivity {
 
         img_Empresa      = findViewById(R.id.imgVw_empresaDetalle);
         txt_nomEmpresa   = findViewById(R.id.txtVw_nomEmpresaDetalle);
+        txt_nomEmpresa.setSelected(true);
         txt_razonEmpresa = findViewById(R.id.txtVw_razonSocial);
         txt_contacto     = findViewById(R.id.txtVw_numEmpresaDetalle);
         txt_domicilio    = findViewById(R.id.txtVw_domicilioEmpresa);
+        txt_domicilio.setSelected(true);
         txt_vacante      = findViewById(R.id.txtVw_nomVacanteDetalle);
         txt_descripcion  = findViewById(R.id.txtVw_descripcionVacant);
         txt_habilidades  = findViewById(R.id.txtVw_habilidades);
@@ -76,6 +76,7 @@ public class DetalleVacanteActivity extends AppCompatActivity {
         txt_horario      = findViewById(R.id.txtVw_turnoDetalle);
         btn_postulate    = findViewById(R.id.btnVw_postulateDetalle);
 
+        myRef = FirebaseDatabase.getInstance().getReference();
 
         Picasso.get().load(VariablesGlobales.foto).placeholder(R.drawable.ic_procesos).into(img_Empresa);
         txt_nomEmpresa.setText(VariablesGlobales.empresa);
@@ -92,7 +93,33 @@ public class DetalleVacanteActivity extends AppCompatActivity {
         btn_postulate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"Postulado",Toast.LENGTH_SHORT).show();
+/*
+                Proceso_Modelo postulaciones = new Proceso_Modelo();
+                postulaciones.postularme(empresa_modelo.getFoto(), empresa_modelo.getNombre_puesto(),
+                                         "postulado", empresa_modelo.getUid_oferta(), empresa_modelo.getEmpresa());
+
+                Proceso_Modelo postulaciones = new Proceso_Modelo();
+                postulaciones.postularme(empresa_modelo.getFoto(), empresa_modelo.getNombre_puesto(),"postulado",
+                                         empresa_modelo.getUid_oferta(), empresa_modelo.getEmpresa());
+                VariablesGlobales.uid_oferta = empresa_modelo.getUid_oferta();
+
+                myRef.child("DB_Alumnos").child(FirebaseAuth.getInstance().getUid()).child("postulaciones")
+                        .child(empresa_modelo.getUid_empresa()).setValue(postulaciones).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        ModeloAlumno modeloAlumno = new ModeloAlumno();
+                        modeloAlumno.postulado(FirebaseAuth.getInstance().getUid(),"Postulado");
+
+                        myRef.child("DB_Ofertas").child(VariablesGlobales.carrera)
+                                .child(empresa_modelo.getUid_oferta()).child("postulados").child(FirebaseAuth.getInstance().getUid()).setValue(modeloAlumno);
+                    }
+                });
+*/
+
+                Snackbar.make(view,"Postulado",Snackbar.LENGTH_SHORT).show();
+
+
             }
         });
 

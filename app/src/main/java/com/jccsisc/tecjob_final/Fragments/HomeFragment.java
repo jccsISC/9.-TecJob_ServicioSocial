@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.ArrayMap;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -35,6 +36,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
 
     private ArrayList<OfertasEmpresa> ofertasEmpresa = new ArrayList<>();
+    private ArrayList<OfertasEmpresa> ofertasEmpresaFavoritos = new ArrayList<>();
     private Empresa_Adapter empresa_adapter;
 
     DatabaseReference myRef;
@@ -94,6 +96,26 @@ public class HomeFragment extends Fragment {
         VariablesGlobales.carrera = carrera;
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
+        database.getReference()
+                .child("DB_Alumnos/"+ FirebaseAuth.getInstance().getCurrentUser().getUid() + "/favoritos")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ofertasEmpresa.clear();
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    OfertasEmpresa ofertasEmpresa = postSnapshot.getValue(OfertasEmpresa.class);
+                    ofertasEmpresa.setUid_empresa(postSnapshot.getKey());
+                    ofertasEmpresaFavoritos.add(ofertasEmpresa);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         database.getReference().child("DB_Ofertas").child(carrera).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -105,6 +127,7 @@ public class HomeFragment extends Fragment {
                  //   all(postSnapshot.getKey().toString());
                     OfertasEmpresa ofertasEmpresa = postSnapshot.getValue(OfertasEmpresa.class);
                     ofertasEmpresa.setUid_empresa(postSnapshot.getKey());
+                    ofertasEmpresa.setFavorito(esFavorito(postSnapshot.getKey()));
 
                     HomeFragment.this.ofertasEmpresa.add(ofertasEmpresa);
                 }
@@ -118,6 +141,17 @@ public class HomeFragment extends Fragment {
 
             }
         });
+    }
+
+    public boolean esFavorito(String empresaId){
+        boolean esFavorito = false;
+        for (OfertasEmpresa favorito: ofertasEmpresaFavoritos) {
+            if (empresaId.equals(favorito.getUid_empresa())) {
+                esFavorito = true;
+                break;
+            }
+        }
+        return esFavorito;
     }
 
     //metodo Toast

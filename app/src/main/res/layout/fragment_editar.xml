@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:background="@drawable/background_tbn_borde"
-        android:layout_marginTop="@dimen/marginTop_Schroll_perfil_10"
+        android:layout_marginTop="60dp"
         android:layout_marginBottom="@dimen/marginTop_Schroll_perfil_10"
         >
 
@@ -431,6 +431,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/marginTop_Modificar_10"
+                android:layout_marginBottom="25sp"
                 android:theme="@style/EditTextGray">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -444,26 +445,25 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/btnVw_Save_Perfil"
-                android:layout_width="@dimen/width_btn_modify_150"
-                android:layout_height="@dimen/width_btn_modify_40"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/marginStart_btn_perfil_10"
-                android:layout_marginBottom="@dimen/marginTop_Perfil_30"
-                android:background="@drawable/selecter_btn_login"
-                android:shadowRadius="15"
-                android:shadowDx="8"
-                android:shadowDy="8"
-                android:shadowColor="@android:color/black"
-                android:text="@string/btn_save"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/font_Size_txtContacto_17" />
+
 
         </LinearLayout>
 
     </ScrollView>
 
-
+    <Button
+        android:id="@+id/btnVw_Save_Perfil"
+        android:layout_width="@dimen/width_btn_modify_150"
+        android:layout_height="@dimen/width_btn_modify_40"
+        android:layout_gravity="center"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/selecter_btn_login"
+        android:shadowRadius="15"
+        android:shadowDx="8"
+        android:shadowDy="8"
+        android:shadowColor="@android:color/black"
+        android:text="@string/btn_save"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_Size_txtContacto_17" />
 
 </LinearLayout>

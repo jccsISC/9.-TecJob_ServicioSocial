@@ -9,11 +9,14 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -21,16 +24,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.jccsisc.tecjob_final.Activities.DetalleVacanteActivity;
+import com.jccsisc.tecjob_final.Modelos.Proceso_Modelo;
+import com.jccsisc.tecjob_final.Objetos_Firebase.ModeloAlumno;
 import com.jccsisc.tecjob_final.Objetos_Firebase.OfertasEmpresa;
 import com.jccsisc.tecjob_final.R;
+import com.jccsisc.tecjob_final.VariablesGlobales;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class Favoritos_Adapter extends RecyclerView.Adapter<Favoritos_Adapter.OfertasViewHolder>
 {
     private DatabaseReference myRef;
-    private StorageReference myStorage;
-    FirebaseAuth mAuth;
 
     //creamos una lista de empresas
     List<OfertasEmpresa> ofertas_Modelo;
@@ -67,13 +72,14 @@ public class Favoritos_Adapter extends RecyclerView.Adapter<Favoritos_Adapter.Of
         ofertasViewHolder.nomVacante.setText(empresa_modelo.getNombre_puesto());
         ofertasViewHolder.horaPublicada.setText(empresa_modelo.getFecha_publicada());
         ofertasViewHolder.turnoVacante.setText(empresa_modelo.getTurno());
-        ofertasViewHolder.img_empresa.setImageResource(R.drawable.sams);
+       // ofertasViewHolder.img_empresa.setImageResource(R.drawable.sams);
 
 
 //        ofertasViewHolder.check_favorito.setChecked(true);
         //obtenemos la db de firebase
         myRef = FirebaseDatabase.getInstance().getReference();
-        myStorage = FirebaseStorage.getInstance().getReference();
+        Picasso.get().load(empresa_modelo.getFoto())
+                .into(ofertasViewHolder.img_empresa);
 
         ofertasViewHolder.cardViewEmpresa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,48 +101,39 @@ public class Favoritos_Adapter extends RecyclerView.Adapter<Favoritos_Adapter.Of
         ofertasViewHolder.check_favorito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myRef.child("DB_Alumnos/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/favoritos/" + empresa_modelo.getUid_empresa()).removeValue();
+                myRef.child("DB_Alumnos/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/favoritos/"
+                        + empresa_modelo.getUid_empresa()).removeValue();
+                Toast.makeText(view.getContext(),"Borrado de favoritos",Toast.LENGTH_SHORT).show();
             }
         });
 
-//        ofertasViewHolder.check_favorito.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                boolean isChk = ((CheckBox)view).isChecked();
-//
-//                if(isChk == true)
-//                {
-//                    String fecha_publicada,nombre_puesto,turno, empresa, uid_empresa, foto;
-//                    empresa = empresa_modelo.getEmpresa();
-//                    fecha_publicada = empresa_modelo.getFecha_publicada();
-//                    nombre_puesto = empresa_modelo.getNombre_puesto();
-//                    turno = empresa_modelo.getTurno();
-//                    uid_empresa = empresa_modelo.getUid_empresa();
-//                    mAuth = FirebaseAuth.getInstance();
-//                    String id = mAuth.getUid();//con este le decimos a donde guarde
-//                    OfertasEmpresa favorito = new OfertasEmpresa(fecha_publicada,nombre_puesto,turno,empresa);
-//                    myRef.child("DB_Alumnos").child(id).child("favoritos").child(uid_empresa).setValue(favorito);
-//                    Snackbar.make(view,"Agregado a Favoritos",Snackbar.LENGTH_SHORT).show();
-//
-//                }
-//            }
-//        });
 
         ofertasViewHolder.btn_postularse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                boolean isbtnCheck = ((Button)view).isEnabled();
 
-                if(isbtnCheck ==true)
-                {
+                Proceso_Modelo postulaciones = new Proceso_Modelo();
+                postulaciones.postularme(empresa_modelo.getFoto(), empresa_modelo.getNombre_puesto()
+                                         ,"postulado", empresa_modelo.getUid_oferta(), empresa_modelo.getEmpresa());
+                VariablesGlobales.uid_oferta = empresa_modelo.getUid_oferta();
 
-                    Snackbar.make(view,"Postulado",Snackbar.LENGTH_SHORT).show();
+                myRef.child("DB_Alumnos").child(FirebaseAuth.getInstance().getUid())
+                        .child("postulaciones").child(empresa_modelo.getUid_empresa()).setValue(postulaciones).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
 
-                }else
-                {
+                        ModeloAlumno modeloAlumno = new ModeloAlumno();
+                        modeloAlumno.postulado(FirebaseAuth.getInstance().getUid(),"Postulado");
 
-                }
+                        myRef.child("DB_Ofertas").child(VariablesGlobales.carrera).child(empresa_modelo.getUid_oferta()).child("postulados").child(FirebaseAuth.getInstance().getUid()).setValue(modeloAlumno);
+                    }
+                });
+
+
+                Snackbar.make(view,"Postulado",Snackbar.LENGTH_SHORT).show();
+
+
 
 
             }

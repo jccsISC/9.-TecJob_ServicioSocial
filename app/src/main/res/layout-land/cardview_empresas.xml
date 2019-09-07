@@ -23,7 +23,6 @@
             android:id="@+id/imgVw_empresaCard"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_img_empresa_170"
-            android:background="@drawable/sams"
             android:padding="@dimen/padding_imgEmpresa_3"
             android:scaleType="centerCrop"
             android:contentDescription="imagen empresa"

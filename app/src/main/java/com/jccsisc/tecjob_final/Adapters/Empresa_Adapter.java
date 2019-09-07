@@ -35,7 +35,6 @@ import java.util.List;
 public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.OfertasViewHolder>
 {
     private DatabaseReference myRef;
-    private StorageReference myStorage;
     FirebaseAuth mAuth;
 
     //creamos una lista de empresas
@@ -77,14 +76,13 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
         ofertasViewHolder.nomVacante.setText(empresa_modelo.getNombre_puesto());
         ofertasViewHolder.horaPublicada.setText(empresa_modelo.getFecha_publicada());
         ofertasViewHolder.turnoVacante.setText(empresa_modelo.getTurno());
-        ofertasViewHolder.img_empresa.setImageResource(R.drawable.sams);
+       // ofertasViewHolder.img_empresa.setImageResource(R.drawable.sams);
         //con esto detecto al usuario actual
         mAuth = FirebaseAuth.getInstance();
         String uid = mAuth.getUid();
         //obtenemos la db de firebase
 
         myRef = FirebaseDatabase.getInstance().getReference();
-        myStorage = FirebaseStorage.getInstance().getReference();
         int index = ofertasViewHolder.getAdapterPosition();
         final String id = ofertas_Modelo.get(index).getUid_empresa();
 
@@ -95,14 +93,6 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
         ofertasViewHolder.cardViewEmpresa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-//                int index = ofertasViewHolder.getAdapterPosition();
-//                String id = ofertas_Modelo.get(index).getUid_empresa();
-//
-//
-//                intent.putExtra("name", ofertas_Modelo.get(index).getEmpresa());
-//                intent.putExtra("vacante",ofertas_Modelo.get(index).getNombre_puesto() );
-//                intent.putExtra("turno", ofertas_Modelo.get(index).getTurno());
 
                 VariablesGlobales.empresa = empresa_modelo.getEmpresa();
                 VariablesGlobales.nombre_puesto= empresa_modelo.getNombre_puesto();
@@ -125,6 +115,7 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
 
 
         ofertasViewHolder.check_favorito.setSelected(true);
+        ofertasViewHolder.check_favorito.setChecked(empresa_modelo.getFavorito());
 
         ofertasViewHolder.check_favorito.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,14 +176,17 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
 
                 boolean isbtnCheck = ((Button)view).isEnabled();
 
+
                 if(isbtnCheck ==true)
                 {
 
 
                     Proceso_Modelo postulaciones = new Proceso_Modelo();
-                    postulaciones.postularme(empresa_modelo.getFoto(), empresa_modelo.getNombre_puesto(),"postulado", empresa_modelo.getUid_oferta(), empresa_modelo.getEmpresa());
+                    postulaciones.postularme(empresa_modelo.getFoto(), empresa_modelo.getNombre_puesto()
+                                              ,"postulado", empresa_modelo.getUid_oferta(), empresa_modelo.getEmpresa());
 
-                    myRef.child("DB_Alumnos").child(FirebaseAuth.getInstance().getUid()).child("postulaciones").child(empresa_modelo.getUid_empresa()).setValue(postulaciones).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    myRef.child("DB_Alumnos").child(FirebaseAuth.getInstance().getUid())
+                            .child("postulaciones").child(empresa_modelo.getUid_empresa()).setValue(postulaciones).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
@@ -204,6 +198,7 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
                     });
 
 
+                    Snackbar.make(view,"Postulado",Snackbar.LENGTH_SHORT).show();
 
 
                 }else

@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,10 +28,12 @@ import com.jccsisc.tecjob_final.R;
 import com.jccsisc.tecjob_final.ValidacionUsuario;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 
 public class PerfilFragment extends Fragment {
 
-    private EditText edt_ControlNum,edt_Name,edt_hbd,edt_age,edt_phoneNum,edt_colony,edt_street,edt_experience,edt_skills,edt_horaDisp, edt_nss;
+    private TextView edt_ControlNum,edt_Name,edt_hbd,edt_age,edt_phoneNum,edt_colony,edt_street,edt_experience,edt_skills,edt_horaDisp, edt_nss;
     private Spinner sp_Carrera, sp_Semestre;
     private RadioButton rb_Matutino, rb_Vespertino, rb_Mixto, rb_Si, rb_No;
     private Button btn_Modify;

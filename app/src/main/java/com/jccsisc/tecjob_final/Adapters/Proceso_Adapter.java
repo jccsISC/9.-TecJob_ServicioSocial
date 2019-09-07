@@ -92,7 +92,9 @@ public class Proceso_Adapter extends RecyclerView.Adapter<Proceso_Adapter.Proces
             this.txt_aceptado_cancelado = itemView.findViewById(R.id.txt_aceptado_cancelado);
             this.imageView_EmpresaProcesos = itemView.findViewById(R.id.imageView_EmpresaProcesos);
             this.nomEmpresa = itemView.findViewById(R.id.txtVw_nomEmpresa_CardProcesos);
+            this.nomEmpresa.setSelected(true);
             this.nomVacante = itemView.findViewById(R.id.txtVw_nomVacante_proceso);
+            this.nomVacante.setSelected(true);
             this.imageView_Aplicado = itemView.findViewById(R.id.imageView_Aplicado);
             this.imageView_Visto = itemView.findViewById(R.id.imageView_Visto);
             this.imageView_EnProceso = itemView.findViewById(R.id.imageView_EnProceso);

@@ -23,7 +23,6 @@
                 android:id="@+id/imgVw_empresaDetalle"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:background="@drawable/sams"
                 />
 
             <LinearLayout
@@ -35,7 +34,10 @@
                     android:id="@+id/txtVw_nomEmpresaDetalle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/textView_nom_Empresa"
+                    android:singleLine="true"
+                    android:scrollHorizontally="true"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="1"
                     android:textSize="24sp"
                     android:paddingTop="5dp"
                     android:paddingStart="10dp"
@@ -95,7 +97,10 @@
                         android:id="@+id/txtVw_domicilioEmpresa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/txt_domicilioEmpresa"
+                        android:singleLine="true"
+                        android:scrollHorizontally="true"
+                        android:ellipsize="marquee"
+                        android:marqueeRepeatLimit="marquee_forever"
                         android:paddingStart="5dp"
                         android:textSize="12sp"
                         />

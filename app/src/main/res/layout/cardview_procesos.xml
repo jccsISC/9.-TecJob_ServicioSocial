@@ -31,7 +31,6 @@
                 android:id="@+id/imageView_EmpresaProcesos"
                 android:layout_width="125dp"
                 android:layout_height="94dp"
-                android:background="@drawable/sams"
                 android:layout_marginStart="5dp"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
@@ -49,11 +48,14 @@
 
                     <TextView
                         android:id="@+id/txtVw_nomEmpresa_CardProcesos"
-                        android:layout_width="245dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="13dp"
                         android:layout_marginStart="5dp"
-                        android:text="@string/textView_nom_Empresa"
+                        android:singleLine="true"
+                        android:scrollHorizontally="true"
+                        android:ellipsize="marquee"
+                        android:marqueeRepeatLimit="1"
                         android:textSize="17dp"
                         android:textStyle="bold" />
 
@@ -76,10 +78,13 @@
                         />
                     <TextView
                         android:id="@+id/txtVw_nomVacante_proceso"
-                        android:layout_width="90dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/nomVacane"
                         android:textSize="14dp"
+                        android:singleLine="true"
+                        android:scrollHorizontally="true"
+                        android:ellipsize="marquee"
+                        android:marqueeRepeatLimit="marquee_forever"
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="5dp"
                         />

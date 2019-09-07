@@ -149,7 +149,7 @@ public class MenuPrincipalActivity extends AppCompatActivity
         txt_Nombre   = headView.findViewById(R.id.txtVw_nombre);
         txt_NoControl= headView.findViewById(R.id.txtVw_noControl);
         txt_Carrera = headView.findViewById(R.id.txtVw_carrera);
-        imagenInfoPersonal = headView.findViewById(R.id.imagenInfoPersonal2);
+        imagenInfoPersonal = headView.findViewById(R.id.imagenInfoPersonal);
 
 
     }//fin OnCreate
@@ -275,7 +275,7 @@ public class MenuPrincipalActivity extends AppCompatActivity
                     txt_NoControl.setText(noControl);
                     txt_Nombre.setText(nombre);
                     txt_Carrera.setText(carrera);
-                    //msj(foto);
+
                     Picasso.get().load(foto)
                         .into(imagenInfoPersonal);
                 }
