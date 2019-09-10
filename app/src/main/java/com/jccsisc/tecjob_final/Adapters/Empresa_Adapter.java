@@ -247,8 +247,10 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
 
             this.nomEmpresa  = itemView.findViewById(R.id.txtVw_nomEmpresa);
             this.nomVacante  = itemView.findViewById(R.id.txtVw_nomVacante);
+            this.nomVacante.setSelected(true);
             this.horaPublicada = itemView.findViewById(R.id.txtVw_timePublicado);
             this.turnoVacante  = itemView.findViewById(R.id.txtVw_horarioEmpresa);
+            this.turnoVacante.setSelected(true);
             this.cardViewEmpresa=itemView.findViewById(R.id.cardView_imgEmpresa);
             this.btn_postularse= itemView.findViewById(R.id.btnVw_GuardarOferta);
             this.img_empresa = itemView.findViewById(R.id.imgVw_empresaCard);

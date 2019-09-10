@@ -4,9 +4,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -29,9 +26,13 @@ import com.jccsisc.tecjob_final.Fragments.HomeFragment;
 import com.jccsisc.tecjob_final.Fragments.PerfilFragment;
 import com.jccsisc.tecjob_final.Fragments.ProcesosFragment;
 import com.jccsisc.tecjob_final.LoginActivity;
-import com.jccsisc.tecjob_final.Objetos_Firebase.Alumno;
-import com.jccsisc.tecjob_final.Objetos_Firebase.ModeloAlumno;
 import com.jccsisc.tecjob_final.R;
+import com.nightonke.boommenu.BoomButtons.BoomButton;
+import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
+import com.nightonke.boommenu.BoomMenuButton;
+import com.nightonke.boommenu.ButtonEnum;
+import com.nightonke.boommenu.OnBoomListener;
+import com.nightonke.boommenu.Piece.PiecePlaceEnum;
 import com.squareup.picasso.Picasso;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -41,9 +42,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.view.Menu;
-import android.view.animation.AnimationUtils;
-import android.view.animation.Interpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,8 +64,8 @@ public class MenuPrincipalActivity extends AppCompatActivity
         setContentView(R.layout.activity_menu_principal);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-
+        BoomMenuButton fab = findViewById(R.id.fab);
+        fab.setButtonEnum(ButtonEnum.Ham);
         //con esto detecto al usuario actual
         mAuth = FirebaseAuth.getInstance();
         String uid = mAuth.getUid();
@@ -77,50 +75,97 @@ public class MenuPrincipalActivity extends AppCompatActivity
         obtenerUsuario(uid);
 //        getUserData();
 
-     //   msj(FirebaseAuth.getInstance().getUid());
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab.setButtonEnum(ButtonEnum.Ham);
+        fab.setPiecePlaceEnum(PiecePlaceEnum.HAM_2);
+        fab.setButtonPlaceEnum(ButtonPlaceEnum.HAM_2);
+        fab.addBuilder(BuilderManager.getHamButtonBuilder("Home","Son las ofertas",R.drawable.ic_home));
+        fab.addBuilder(BuilderManager.getHamButtonBuilder("Procesos","Seguimiento de vacantes",R.drawable.ic_procesos));
+
+        fab.setOnBoomListener(new OnBoomListener() {
             @Override
-            public void onClick(View view) {
+            public void onClicked(int index, BoomButton boomButton) {
+                if(index == 0){
 
-                click = !click;
-                //validación para que gire 45° el icono y abra vista Mi orden
-                if (click==true)
-                {
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                        Interpolator interpolador = AnimationUtils.loadInterpolator(getBaseContext(),
-                                android.R.interpolator.fast_out_slow_in);
+                    FragmentManager fm = getSupportFragmentManager();
+                    fm.beginTransaction().replace(R.id.content_menu, new HomeFragment()).commit();
+                }else if(index == 1){
 
-//                        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
+                    FragmentManager fm = getSupportFragmentManager();
+                    fm.beginTransaction().replace(R.id.content_menu, new ProcesosFragment()).commit();
 
-                        view.animate()
-                                .rotation(click ? 180f : 0)
-                                .setInterpolator(interpolador)
-                                .start();
-
-                        FragmentManager fm = getSupportFragmentManager();
-                        fm.beginTransaction().replace(R.id.content_menu, new ProcesosFragment()).commit();
-                    }
-                }
-                //validación para que gire 45° el icono y abra vista Home
-                if (click==false)
-                {
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                        Interpolator interpolador = AnimationUtils.loadInterpolator(getBaseContext(),
-                                android.R.interpolator.fast_out_slow_in);
-
-                        view.animate()
-                                .rotation(click ? 180f : 0)
-                                .setInterpolator(interpolador)
-                                .start();
-
-                        FragmentManager fm = getSupportFragmentManager();
-                        fm.beginTransaction().replace(R.id.content_menu, new HomeFragment()).commit();
-                    }
                 }
 
             }
+
+            @Override
+            public void onBackgroundClick() {
+
+            }
+
+            @Override
+            public void onBoomWillHide() {
+
+            }
+
+            @Override
+            public void onBoomDidHide() {
+
+            }
+
+            @Override
+            public void onBoomWillShow() {
+
+            }
+
+            @Override
+            public void onBoomDidShow() {
+
+            }
         });
+     //   msj(FirebaseAuth.getInstance().getUid());
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                click = !click;
+//                //validación para que gire 45° el icono y abra vista Mi orden
+//                if (click==true)
+//                {
+//                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+//                        Interpolator interpolador = AnimationUtils.loadInterpolator(getBaseContext(),
+//                                android.R.interpolator.fast_out_slow_in);
+//
+////                        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+////                        .setAction("Action", null).show();
+//
+//                        view.animate()
+//                                .rotation(click ? 180f : 0)
+//                                .setInterpolator(interpolador)
+//                                .start();
+//
+//                        FragmentManager fm = getSupportFragmentManager();
+//                        fm.beginTransaction().replace(R.id.content_menu, new ProcesosFragment()).commit();
+//                    }
+//                }
+//                //validación para que gire 45° el icono y abra vista Home
+//                if (click==false)
+//                {
+//                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+//                        Interpolator interpolador = AnimationUtils.loadInterpolator(getBaseContext(),
+//                                android.R.interpolator.fast_out_slow_in);
+//
+//                        view.animate()
+//                                .rotation(click ? 180f : 0)
+//                                .setInterpolator(interpolador)
+//                                .start();
+//
+//                        FragmentManager fm = getSupportFragmentManager();
+//                        fm.beginTransaction().replace(R.id.content_menu, new HomeFragment()).commit();
+//                    }
+//                }
+//
+//            }
+//        });
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -148,6 +193,7 @@ public class MenuPrincipalActivity extends AppCompatActivity
         View headView = navigationView.getHeaderView( 0);
         txt_Nombre   = headView.findViewById(R.id.txtVw_nombre);
         txt_NoControl= headView.findViewById(R.id.txtVw_noControl);
+        this.txt_NoControl.setSelected(true);
         txt_Carrera = headView.findViewById(R.id.txtVw_carrera);
         imagenInfoPersonal = headView.findViewById(R.id.imagenInfoPersonal);
 

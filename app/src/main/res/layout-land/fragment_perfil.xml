@@ -35,8 +35,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imagenInfoPersonal"
-                android:layout_width="150sp"
-                android:layout_height="150sp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:elevation="@dimen/elevation_4"
                 android:src="@drawable/ic_camera"
                 android:paddingTop="@dimen/paddingTop_imgPerfil_8"
@@ -71,7 +71,7 @@
                     android:id="@+id/edtVw_ControlNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/noControl"
+                    android:hint="No. Control"
                     android:inputType="number"
                     android:maxLength="8"
                     android:focusable="false"

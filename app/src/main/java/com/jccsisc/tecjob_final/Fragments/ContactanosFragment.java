@@ -21,6 +21,7 @@ public class ContactanosFragment extends Fragment {
 
     private TextView btn_llamarRebe;
     private TextView btn_llamarLeti;
+    private TextView emailLeti, emailRebe;
 
 
     public ContactanosFragment() {
@@ -33,6 +34,10 @@ public class ContactanosFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_contactanos, container, false);
 
+        emailLeti = view.findViewById(R.id.txt_correo_Leti);
+        this.emailLeti.setSelected(true);
+        emailRebe = view.findViewById(R.id.txt_correo_Rebeca);
+        this.emailRebe.setSelected(true);
         btn_llamarLeti = view.findViewById(R.id.txt_cel_Leti);
 //        final EditText mPhoneNoEt = (EditText) findViewById(R.id.et_phone_no);
 

@@ -106,7 +106,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="contactos">Contactos:</string>
+    <string name="contactos">Contactos</string>
     <string name="name_Leti">Leticia Velarde</string>
     <string name="name_rebe">Rebeca Anaya</string>
     <string name="telefonos">Telefonos:</string>
@@ -116,7 +116,7 @@
     <string name="correoLeti">leticia.velarde@vallarta.tecmm.edu.mx</string>
     <string name="correoRebe">rebeca.anaya@vallarta.tecmm.edu.mx</string>
     <string name="MiPerfil">Mi Perfil</string>
-    <string name="noControl">No. Control</string>
+    <string name="noControl">No.Ctrl</string>
     <string name="name">Nombre Completo</string>
     <string name="carrera">Carrera:</string>
     <string name="semestre">Semestre:</string>

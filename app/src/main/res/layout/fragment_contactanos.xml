@@ -9,200 +9,203 @@
     tools:context=".Fragments.ContactanosFragment">
 
 
-    <ImageView
-        android:id="@+id/imageView_Tec"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_imgView_215"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/uni" />
-
-    <TextView
-        android:id="@+id/txtVw_Contactos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="157dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="157dp"
-        android:text="@string/contactos"
-        android:textSize="@dimen/subtitles_contact_20"
-        android:textStyle="bold"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_Tec" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
 
 
-    <View
-        android:id="@+id/view2"
-        android:layout_width="@dimen/width_viewLineaContac_315"
-        android:layout_height="@dimen/height_viewLineaContac_1"
-        android:layout_marginTop="5dp"
-        android:background="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_telefonos" />
+            <ImageView
+                android:id="@+id/imageView_Tec"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_imgView_215"
+                android:layout_marginTop="8dp"
+                app:srcCompat="@drawable/uni" />
+
+            <TextView
+                android:id="@+id/txtVw_Contactos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/contactos"
+                android:textSize="@dimen/subtitles_contact_20"
+                android:textStyle="bold"/>
 
 
-    <TextView
-        android:id="@+id/txt_Leti"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/name_Leti"
-        android:textSize="@dimen/font_Size_txtContacto_17"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
-
-    <TextView
-        android:id="@+id/txt_Rebeca"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="@string/name_rebe"
-        android:textSize="@dimen/font_Size_txtContacto_17"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Leti" />
-
-    <TextView
-        android:id="@+id/txt_telefonos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="@string/telefonos"
-        android:textSize="@dimen/subtitles_contact_20"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Rebeca" />
-
-    <View
-        android:id="@+id/view3"
-        android:layout_width="@dimen/width_viewLineaContac_315"
-        android:layout_height="@dimen/height_viewLineaContac_1"
-        android:layout_marginTop="5dp"
-        android:background="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Correo_Electro" />
+            <View
+                android:id="@+id/view2"
+                android:layout_width="@dimen/width_viewLineaContac_315"
+                android:layout_height="@dimen/height_viewLineaContac_1"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorPrimary"
+                />
 
 
-    <TextView
-        android:id="@+id/txt_cel_Leti"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:shadowColor="@color/colorPrimary"
-        android:shadowDx="7"
-        android:shadowDy="7"
-        android:shadowRadius="15"
-        android:text="@string/num_leti"
-        android:textSize="@dimen/font_Size_txtContacto_17"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+            <TextView
+                android:id="@+id/txt_Leti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/name_Leti"
+                android:textSize="@dimen/font_Size_txtContacto_17"
+                />
+
+            <TextView
+                android:id="@+id/txt_Rebeca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/name_rebe"
+                android:textSize="@dimen/font_Size_txtContacto_17"
+                />
+
+            <TextView
+                android:id="@+id/txt_telefonos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/telefonos"
+                android:textStyle="bold"
+                android:textSize="@dimen/subtitles_contact_20"
+                />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="@dimen/width_viewLineaContac_315"
+                android:layout_height="@dimen/height_viewLineaContac_1"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorPrimary"
+                />
 
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/txt_toqueParaLlamar"
-        android:textSize="@dimen/font_Size_txtContacto_17"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
 
-    <TextView
-        android:id="@+id/txt_cel_Rebeca"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:shadowColor="@color/colorPrimary"
-        android:shadowDx="7"
-        android:shadowDy="7"
-        android:shadowRadius="15"
-        android:text="@string/num_rebe"
-        android:textSize="@dimen/font_Size_txtContacto_17"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_cel_Leti" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/txt_toqueParaLlamar"
+                android:textColor="@color/colorPrimary"
+                android:textSize="15dp" />
 
-    <TextView
-        android:id="@+id/txt_Correo_Electro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/correosElectr"
-        android:textSize="@dimen/subtitles_contact_20"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_cel_Rebeca" />
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="@dimen/width_viewLineaContac_315"
-        android:layout_height="@dimen/height_viewLineaContac_1"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="48dp"
-        android:background="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtVw_Contactos" />
-
-    <TextView
-        android:id="@+id/txt_correo_Leti"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/correoLeti"
-        android:textSize="@dimen/font_Size_txtContacto_17"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view3" />
-
-    <TextView
-        android:id="@+id/txt_correo_Rebeca"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="59dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="59dp"
-        android:text="@string/correoRebe"
-        android:textSize="@dimen/font_Size_txtContacto_17"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_correo_Leti" />
+            <TextView
+                android:id="@+id/txt_cel_Leti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:shadowColor="@color/colorPrimary"
+                android:shadowDx="7"
+                android:shadowDy="7"
+                android:shadowRadius="15"
+                android:text="@string/num_leti"
+                android:textSize="@dimen/font_Size_txtContacto_17"
+                />
 
 
-    <ImageView
-        android:id="@+id/imageView_LogoTecJob"
-        android:layout_width="136dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_correo_Rebeca"
-        app:srcCompat="@drawable/logot" />
+            <TextView
+                android:id="@+id/txt_cel_Rebeca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:shadowColor="@color/colorPrimary"
+                android:shadowDx="7"
+                android:shadowDy="7"
+                android:shadowRadius="15"
+                android:text="@string/num_rebe"
+                android:textSize="@dimen/font_Size_txtContacto_17"
+                />
 
-    <ImageView
-        android:id="@+id/imageView_Logo"
-        android:layout_width="@dimen/width_logo_53"
-        android:layout_height="@dimen/height_logo_37"
-        android:layout_marginStart="145dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="84dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView_LogoTecJob"
-        app:srcCompat="@drawable/logotecgold" />
+
+            <TextView
+                android:id="@+id/txt_Correo_Electro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/correosElectr"
+                android:textSize="@dimen/subtitles_contact_20"
+                android:textStyle="bold"
+                />
+
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="@dimen/width_viewLineaContac_315"
+                android:layout_height="@dimen/height_viewLineaContac_1"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="48dp"
+                android:background="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/txt_correo_Leti"
+                android:layout_width="283dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/correoLeti"
+                android:textSize="@dimen/font_Size_txtContacto_17"
+                android:singleLine="true"
+                android:scrollHorizontally="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+
+                />
+
+            <TextView
+                android:id="@+id/txt_correo_Rebeca"
+                android:layout_width="283dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="59dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="59dp"
+                android:singleLine="true"
+                android:scrollHorizontally="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:text="@string/correoRebe"
+                android:textSize="@dimen/font_Size_txtContacto_17"
+
+                />
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView_LogoTecJob"
+                    android:layout_width="136dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/logot" />
+
+                <ImageView
+                    android:id="@+id/imageView_Logo"
+                    android:layout_width="@dimen/width_logo_53"
+                    android:layout_height="@dimen/height_logo_37"
+                    android:layout_marginStart="215dp"
+                    android:layout_marginTop="35dp"
+                    app:srcCompat="@drawable/logotecgold" />
+
+
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

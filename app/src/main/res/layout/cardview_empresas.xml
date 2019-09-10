@@ -5,7 +5,8 @@
     android:id="@+id/cardView_imgEmpresa"
     android:layout_width="match_parent"
     android:layout_height="@dimen/height_cardEmpresas_245"
-
+    android:layout_marginTop="@dimen/marginStart_txt_desplegable_5"
+    android:layout_marginBottom="@dimen/marginStart_txt_desplegable_5"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
@@ -51,7 +52,7 @@
                 >
 
                 <LinearLayout
-                    android:layout_width="310sp"
+                    android:layout_width="280dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     >
@@ -67,8 +68,8 @@
                             android:text="@string/txt_titleVacante"
                             android:textColor="@color/colorGray1"
                             android:paddingStart="@dimen/paddingStart_cardEmpresa_5"
-                            android:maxLines="1"
-                            android:textSize="16sp"
+                            android:singleLine="true"
+                            android:textSize="16dp"
                             android:textStyle="bold"
                             />
 
@@ -76,11 +77,13 @@
                             android:id="@+id/txtVw_nomVacante"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:ellipsize="end"
                             android:singleLine="true"
+                            android:scrollHorizontally="true"
+                            android:ellipsize="marquee"
+                            android:marqueeRepeatLimit="marquee_forever"
                             android:paddingStart="@dimen/paddingStart_cardEmpresa_5"
                             android:textColor="@color/colorGray1"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             />
 
 
@@ -96,7 +99,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="14dp"
-                            android:layout_marginStart="5sp"
+                            android:layout_marginStart="5dp"
                             android:text="@string/txt_horario"
                             android:textColor="@color/colorGray1"
                             android:textStyle="bold"
@@ -104,11 +107,14 @@
 
                         <TextView
                             android:id="@+id/txtVw_horarioEmpresa"
-                            android:layout_width="145sp"
+                            android:layout_width="145dp"
                             android:layout_height="wrap_content"
                             android:textSize="14dp"
-                            android:layout_marginStart="5sp"
+                            android:layout_marginStart="5dp"
                             android:singleLine="true"
+                            android:scrollHorizontally="true"
+                            android:ellipsize="marquee"
+                            android:marqueeRepeatLimit="1"
                             android:textColor="@color/colorGray1"
                             />
 
@@ -118,7 +124,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:button="@drawable/postularse_selecter"
-                            android:layout_marginStart="30sp"
+                            android:layout_marginStart="30dp"
                             android:checked="false"
                             />
 
@@ -131,7 +137,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:text="@string/txt_fechaPublicado"
                             android:textColor="@color/colorGray1"
                             android:paddingStart="@dimen/paddingStart_cardEmpresa_5"
@@ -140,9 +146,9 @@
 
                         <TextView
                             android:id="@+id/txtVw_timePublicado"
-                            android:layout_width="150sp"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:layout_marginStart="@dimen/paddingStart_cardEmpresa_5"
                             android:text="13:05"
                             android:textColor="@color/colorGray1"
@@ -157,7 +163,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:paddingBottom="7sp"
+                    android:paddingBottom="7dp"
                     android:gravity="center"
                     >
 
@@ -165,15 +171,15 @@
                     <Button
                         android:id="@+id/btnVw_GuardarOferta"
                         android:layout_width="wrap_content"
-                        android:layout_height="40sp"
+                        android:layout_height="40dp"
                         android:background="@drawable/background_tbn_guardar"
                         android:text="@string/btn_guardarVacant"
                         android:textColor="@android:color/white"
-                        android:textSize="12sp"
+                        android:textSize="12dp"
                         android:paddingStart="3dp"
                         android:paddingEnd="3dp"
-                        android:layout_marginEnd="3sp"
-                        android:layout_marginStart="3sp"
+                        android:layout_marginEnd="3dp"
+                        android:layout_marginStart="3dp"
                         />
 
 

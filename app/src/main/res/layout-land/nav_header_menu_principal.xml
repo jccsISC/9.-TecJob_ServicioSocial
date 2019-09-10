@@ -18,12 +18,12 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imagenInfoPersonal"
-            android:layout_width="90sp"
-            android:layout_height="90sp"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:elevation="@dimen/elevation_4"
             android:src="@drawable/ic_camera"
             android:layout_marginStart="@dimen/marginStart_imgDesple_2"
-            android:layout_gravity="end|center_vertical"
+            android:layout_gravity="center"
             />
 
 
@@ -31,7 +31,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50sp"
+            android:layout_marginTop="80dp"
             android:orientation="vertical"
             >
 
@@ -45,16 +45,20 @@
                     android:layout_height="wrap_content"
                     android:text="@string/noControl"
                     android:textColor="@android:color/white"
-                    android:textSize="12sp"
+                    android:textSize="12dp"
                     />
                 <TextView
                     android:id="@+id/txtVw_noControl"
-                    android:layout_width="wrap_content"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:text="@string/txt_nocontroll"
+                    android:singleLine="true"
+                    android:scrollHorizontally="true"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
                     android:textColor="@android:color/white"
                     android:layout_marginStart="@dimen/marginStart_txt_desplegable_5"
-                    android:textSize="12sp"
+                    android:textSize="12dp"
                     />
 
 
@@ -63,13 +67,14 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/txt_Carrera"
                     android:textColor="@android:color/white"
-                    android:textSize="12sp"
+                    android:textSize="12dp"
                     />
 
                 <TextView
@@ -77,9 +82,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/txt_carrer"
+                    android:singleLine="true"
+                    android:scrollHorizontally="true"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
                     android:textColor="@android:color/white"
                     android:layout_marginStart="@dimen/marginStart_txt_desplegable_5"
-                    android:textSize="12sp"
+                    android:textSize="12dp"
                     />
 
 
@@ -92,11 +101,15 @@
             android:id="@+id/txtVw_nombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="70dp"
+            android:paddingTop="110dp"
             android:layout_marginTop="20dp"
             android:text="@string/nav_header_title"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
             android:textColor="@android:color/white"
-            android:textSize="13sp"
+            android:textSize="13dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     </FrameLayout>
