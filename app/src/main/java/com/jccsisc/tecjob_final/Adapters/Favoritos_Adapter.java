@@ -36,7 +36,7 @@ import java.util.List;
 public class Favoritos_Adapter extends RecyclerView.Adapter<Favoritos_Adapter.OfertasViewHolder>
 {
     private DatabaseReference myRef;
-
+    private FirebaseAuth mAuth;
     //creamos una lista de empresas
     List<OfertasEmpresa> ofertas_Modelo;
     private int resource;
@@ -66,30 +66,53 @@ public class Favoritos_Adapter extends RecyclerView.Adapter<Favoritos_Adapter.Of
     public void onBindViewHolder(@NonNull final OfertasViewHolder ofertasViewHolder, int position) {
         //optenemos la posicion de la lista
         final OfertasEmpresa empresa_modelo = ofertas_Modelo.get(position);
-//        OfertasEmpresa ofertasEmpresa = ofertas_Modelo.get(position);
+//        final OfertasEmpresa ofertasEmpresa = ofertas_Modelo.get(position);
 
         ofertasViewHolder.nomEmpresa.setText(empresa_modelo.getEmpresa());
         ofertasViewHolder.nomVacante.setText(empresa_modelo.getNombre_puesto());
         ofertasViewHolder.horaPublicada.setText(empresa_modelo.getFecha_publicada());
         ofertasViewHolder.turnoVacante.setText(empresa_modelo.getTurno());
-       // ofertasViewHolder.img_empresa.setImageResource(R.drawable.sams);
+        // ofertasViewHolder.img_empresa.setImageResource(R.drawable.sams);
+        //con esto detecto al usuario actual
+        mAuth = FirebaseAuth.getInstance();
+        String uid = mAuth.getUid();
 
-
-//        ofertasViewHolder.check_favorito.setChecked(true);
-        //obtenemos la db de firebase
         myRef = FirebaseDatabase.getInstance().getReference();
+
+//        int index = ofertasViewHolder.getAdapterPosition();
+//        String id = ofertas_Modelo.get(index).getUid_empresa();
+
         Picasso.get().load(empresa_modelo.getFoto())
                 .into(ofertasViewHolder.img_empresa);
+
 
         ofertasViewHolder.cardViewEmpresa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                int index = ofertasViewHolder.getAdapterPosition();
-                String id = ofertas_Modelo.get(index).getUid_empresa();
+//                VariablesGlobales.empresa = empresa_modelo.getEmpresa();
+//                VariablesGlobales.nombre_puesto= empresa_modelo.getNombre_puesto();
+//                VariablesGlobales.turno = empresa_modelo.getTurno();
+//                VariablesGlobales.razon_social = empresa_modelo.getRazon_social();
+//                VariablesGlobales.contacto = empresa_modelo.getContacto();
+//                VariablesGlobales.domicilio = empresa_modelo.getDomicilio();
+//                VariablesGlobales.descripcion_puesto = empresa_modelo.getDesc_puesto();
+//                VariablesGlobales.habilidades = empresa_modelo.getHabilidades();
+//                VariablesGlobales.requisitos = empresa_modelo.getRequisitos();
+//                VariablesGlobales.salario_mensual = empresa_modelo.getSalario_mensual();
+//                VariablesGlobales.uid_oferta = empresa_modelo.getUid_oferta();
+//                VariablesGlobales.foto = empresa_modelo.getFoto();
+//                alt(VariablesGlobales.habilidades);
+////                Intent intent = new Intent(activity, DetalleVacanteActivity.class);
+////
+////                activity.startActivity(intent);
+
+                VariablesGlobales.uid_oferta = empresa_modelo.getUid_oferta();
+
+//                VariablesGlobales.foto = empresa_modelo.getFoto();
 
                 Intent intent = new Intent(activity, DetalleVacanteActivity.class);
-                intent.putExtra("llave", id);
+
                 activity.startActivity(intent);
 
             }
@@ -114,8 +137,9 @@ public class Favoritos_Adapter extends RecyclerView.Adapter<Favoritos_Adapter.Of
 
 
                 Proceso_Modelo postulaciones = new Proceso_Modelo();
-                postulaciones.postularme(empresa_modelo.getFoto(), empresa_modelo.getNombre_puesto()
-                                         ,"postulado", empresa_modelo.getUid_oferta(), empresa_modelo.getEmpresa());
+
+
+                postulaciones.postularme(empresa_modelo.getFoto(), empresa_modelo.getNombre_puesto(),"postulado", empresa_modelo.getUid_oferta(), empresa_modelo.getEmpresa());
                 VariablesGlobales.uid_oferta = empresa_modelo.getUid_oferta();
 
                 myRef.child("DB_Alumnos").child(FirebaseAuth.getInstance().getUid())
@@ -139,6 +163,10 @@ public class Favoritos_Adapter extends RecyclerView.Adapter<Favoritos_Adapter.Of
             }
         });
 
+    }
+
+    public void alt(String mensaje){
+        Toast.makeText(activity,mensaje,Toast.LENGTH_SHORT).show();
     }
 
     //cremos el tamaño del recycler
@@ -174,9 +202,11 @@ public class Favoritos_Adapter extends RecyclerView.Adapter<Favoritos_Adapter.Of
 
             this.nomEmpresa  = itemView.findViewById(R.id.txtVw_nomEmpresa);
             this.nomVacante  = itemView.findViewById(R.id.txtVw_nomVacante);
+            this.nomVacante.setSelected(true);
             this.horaPublicada = itemView.findViewById(R.id.txtVw_timePublicado);
             this.turnoVacante  = itemView.findViewById(R.id.txtVw_horarioEmpresa);
-            this.cardViewEmpresa=itemView.findViewById(R.id.cardView_imgEmpresa);
+            this.turnoVacante.setSelected(true);
+            this.cardViewEmpresa=itemView.findViewById(R.id.cardView_imgEmpresa_Favoritos);
             this.btn_postularse= itemView.findViewById(R.id.btnVw_GuardarOferta);
             this.img_empresa = itemView.findViewById(R.id.imgVw_empresaCard);
 

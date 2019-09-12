@@ -17,6 +17,8 @@
     <color name="colorGray1">#757575</color>
     <color name="colorGray2">#BDBDBD</color>
     <color name="colorGray3">#E0E0E0</color>
+    <color name="colorGray4">#E0DCDC</color>
+    <color name="colorWhiteTransparent">#BAFFFFFF</color>
     <color name="bacground_coordinatorLayout">#FFFFFF</color>
     <color name="background_Card">#53292929</color>
     <color name="background_btn_guardar">#D7A28D8D</color>

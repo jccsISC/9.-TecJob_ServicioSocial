@@ -47,14 +47,21 @@ public class DetalleVacanteActivity extends AppCompatActivity {
     private Button btn_postulate;
 
 
-    private DatabaseReference myRef;
+    ValidacionUsuario v = new ValidacionUsuario();
 
+    private FirebaseAuth mAuth;
+    private DatabaseReference myRef;
+    private String foto,nombre_empresa, nombre_puesto, uid_oferta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_vacante);
 
+
+        mAuth = FirebaseAuth.getInstance();//obtenemos el usuario iniciado
+
+        myRef = FirebaseDatabase.getInstance().getReference();
 
         //para que aparesca el back button ahora para que funcione nos vamos al manifest
         getSupportActionBar().setTitle("Detalle de la Oferta");
@@ -69,6 +76,7 @@ public class DetalleVacanteActivity extends AppCompatActivity {
         txt_domicilio    = findViewById(R.id.txtVw_domicilioEmpresa);
         txt_domicilio.setSelected(true);
         txt_vacante      = findViewById(R.id.txtVw_nomVacanteDetalle);
+        txt_vacante.setSelected(true);
         txt_descripcion  = findViewById(R.id.txtVw_descripcionVacant);
         txt_habilidades  = findViewById(R.id.txtVw_habilidades);
         txt_requisitos   = findViewById(R.id.txtVw_requisitos);
@@ -76,54 +84,156 @@ public class DetalleVacanteActivity extends AppCompatActivity {
         txt_horario      = findViewById(R.id.txtVw_turnoDetalle);
         btn_postulate    = findViewById(R.id.btnVw_postulateDetalle);
 
-        myRef = FirebaseDatabase.getInstance().getReference();
 
-        Picasso.get().load(VariablesGlobales.foto).placeholder(R.drawable.ic_procesos).into(img_Empresa);
-        txt_nomEmpresa.setText(VariablesGlobales.empresa);
-        txt_razonEmpresa.setText(VariablesGlobales.razon_social);
-        txt_contacto.setText(VariablesGlobales.contacto);
-        txt_domicilio.setText(VariablesGlobales.domicilio);
-        txt_vacante.setText(VariablesGlobales.nombre_puesto);
-        txt_descripcion.setText(VariablesGlobales.descripcion_puesto);
-        txt_habilidades.setText(VariablesGlobales.habilidades);
-        txt_requisitos.setText(VariablesGlobales.requisitos);
-        txt_salario.setText(VariablesGlobales.salario_mensual);
-        txt_horario.setText(VariablesGlobales.turno);
+
+        getData(VariablesGlobales.carrera,VariablesGlobales.uid_oferta);
+
+//        Picasso.get().load(VariablesGlobales.foto).placeholder(R.drawable.ic_procesos).into(img_Empresa);
+//        txt_nomEmpresa.setText(VariablesGlobales.empresa);
+//        txt_razonEmpresa.setText(VariablesGlobales.razon_social);
+//        txt_contacto.setText(VariablesGlobales.contacto);
+//        txt_domicilio.setText(VariablesGlobales.domicilio);
+//        txt_vacante.setText(VariablesGlobales.nombre_puesto);
+//        txt_descripcion.setText(VariablesGlobales.descripcion_puesto);
+//        txt_habilidades.setText(VariablesGlobales.habilidades);
+//        txt_requisitos.setText(VariablesGlobales.requisitos);
+//        txt_salario.setText(VariablesGlobales.salario_mensual);
+//        txt_horario.setText(VariablesGlobales.turno);
 
         btn_postulate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-/*
-                Proceso_Modelo postulaciones = new Proceso_Modelo();
-                postulaciones.postularme(empresa_modelo.getFoto(), empresa_modelo.getNombre_puesto(),
-                                         "postulado", empresa_modelo.getUid_oferta(), empresa_modelo.getEmpresa());
 
-                Proceso_Modelo postulaciones = new Proceso_Modelo();
-                postulaciones.postularme(empresa_modelo.getFoto(), empresa_modelo.getNombre_puesto(),"postulado",
-                                         empresa_modelo.getUid_oferta(), empresa_modelo.getEmpresa());
-                VariablesGlobales.uid_oferta = empresa_modelo.getUid_oferta();
 
-                myRef.child("DB_Alumnos").child(FirebaseAuth.getInstance().getUid()).child("postulaciones")
-                        .child(empresa_modelo.getUid_empresa()).setValue(postulaciones).addOnCompleteListener(new OnCompleteListener<Void>() {
+                boolean isbtnCheck = ((Button)view).isEnabled();
+
+
+                if(isbtnCheck ==true)
+                {
+                    postulate();
+                    Snackbar.make(view,"Postulado",Snackbar.LENGTH_SHORT).show();
+                }else
+                {
+
+                }
+
+            }
+        });
+
+    }//fin onCreate
+
+    public void getData(String carreraa, String uid_oferton){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        database.getReference()
+                .child("DB_Ofertas/"+carreraa)
+                .orderByChild("uid_oferta")
+                .equalTo(uid_oferton)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        ModeloAlumno modeloAlumno = new ModeloAlumno();
-                        modeloAlumno.postulado(FirebaseAuth.getInstance().getUid(),"Postulado");
+                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                            OfertasEmpresa ofertasEmpresa = postSnapshot.getValue(OfertasEmpresa.class);
 
-                        myRef.child("DB_Ofertas").child(VariablesGlobales.carrera)
-                                .child(empresa_modelo.getUid_oferta()).child("postulados").child(FirebaseAuth.getInstance().getUid()).setValue(modeloAlumno);
+                            Picasso.get().load(ofertasEmpresa.getFoto()).placeholder(R.drawable.ic_procesos).into(img_Empresa);
+
+                            txt_nomEmpresa.setText(ofertasEmpresa.getEmpresa());
+                            txt_razonEmpresa.setText(ofertasEmpresa.getRazon_social());
+                            txt_contacto.setText(ofertasEmpresa.getContacto());
+                            txt_domicilio.setText(ofertasEmpresa.getDomicilio());
+                            txt_vacante.setText(ofertasEmpresa.getNombre_puesto());
+                            txt_descripcion.setText(ofertasEmpresa.getDesc_puesto());
+                            txt_habilidades.setText(ofertasEmpresa.getHabilidades());
+                            txt_requisitos.setText(ofertasEmpresa.getRequisitos());
+                            txt_salario.setText(ofertasEmpresa.getSalario_mensual());
+                            txt_horario.setText(ofertasEmpresa.getTurno());
+
+                            foto = ofertasEmpresa.getFoto();
+                            nombre_empresa = ofertasEmpresa.getEmpresa();
+                            nombre_puesto = ofertasEmpresa.getNombre_puesto();
+                            uid_oferta = ofertasEmpresa.getUid_oferta();
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
                     }
                 });
-*/
 
-                Snackbar.make(view,"Postulado",Snackbar.LENGTH_SHORT).show();
+    }
 
 
+    public void alt(String mensaje){
+        Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
+    }
+
+    //metodo para crear una postulacion
+    public void postulate()
+    {
+
+        //Picasso.get().load(VariablesGlobales.foto).placeholder(R.drawable.ic_procesos).into(img_Empresa);
+
+        Proceso_Modelo postulaciones = new Proceso_Modelo();
+        postulaciones.postularme(foto, nombre_puesto
+                ,"postulado", uid_oferta, nombre_empresa);
+
+        myRef.child("DB_Alumnos").child(mAuth.getUid())
+                .child("postulaciones")
+                .child(VariablesGlobales.uid_oferta)
+                .setValue(postulaciones).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+                ModeloAlumno modeloAlumno = new ModeloAlumno();
+                modeloAlumno.postulado(mAuth.getUid(),"Postulado");
+
+                myRef.child("DB_Ofertas").child(VariablesGlobales.carrera).child(VariablesGlobales.uid_oferta).child("postulados").child(mAuth.getUid()).setValue(modeloAlumno);
             }
         });
 
 
     }
+
+    public void getUser(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        database.getReference()
+                .child("DB_Alumnos")
+                .orderByChild("uid")
+                .equalTo(mAuth.getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                            OfertasEmpresa ofertasEmpresa = postSnapshot.getValue(OfertasEmpresa.class);
+
+                            Picasso.get().load(ofertasEmpresa.getFoto()).placeholder(R.drawable.ic_procesos).into(img_Empresa);
+                            txt_nomEmpresa.setText(ofertasEmpresa.getEmpresa());
+                            txt_razonEmpresa.setText(ofertasEmpresa.getRazon_social());
+                            txt_contacto.setText(ofertasEmpresa.getContacto());
+                            txt_domicilio.setText(ofertasEmpresa.getDomicilio());
+                            txt_vacante.setText(ofertasEmpresa.getNombre_puesto());
+                            txt_descripcion.setText(ofertasEmpresa.getDesc_puesto());
+                            txt_habilidades.setText(ofertasEmpresa.getHabilidades());
+                            txt_requisitos.setText(ofertasEmpresa.getRequisitos());
+                            txt_salario.setText(ofertasEmpresa.getSalario_mensual());
+                            txt_horario.setText(ofertasEmpresa.getTurno());
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+    }
+
+
 
 }

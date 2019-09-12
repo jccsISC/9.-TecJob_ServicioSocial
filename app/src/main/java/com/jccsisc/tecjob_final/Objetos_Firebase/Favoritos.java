@@ -2,41 +2,26 @@ package com.jccsisc.tecjob_final.Objetos_Firebase;
 
 public class Favoritos
 {
-    String Horario, carrera, empresa, fecha_publicada, foto, puesto, uid_empresa;
+    String   empresa, fecha_publicada, foto, nombre_puesto, uid_empresa, turno;
 
     public Favoritos(){}
 
-    public Favoritos(String horario, String carrera, String empresa, String fecha_publicada, String foto, String puesto) {
-        Horario = horario;
-        this.carrera = carrera;
-        this.empresa = empresa;
-        this.fecha_publicada = fecha_publicada;
+    public Favoritos( String foto, String fecha_publicada, String nombre_puesto, String turno, String empresa) {
         this.foto = foto;
-        this.puesto = puesto;
-    }
-
-    public String getHorario() {
-        return Horario;
-    }
-
-    public void setHorario(String horario) {
-        Horario = horario;
-    }
-
-    public String getCarrera() {
-        return carrera;
-    }
-
-    public void setCarrera(String carrera) {
-        this.carrera = carrera;
-    }
-
-    public String getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(String empresa) {
+        this.fecha_publicada = fecha_publicada;
+        this.nombre_puesto = nombre_puesto;
+        this.turno = turno;
         this.empresa = empresa;
+    }
+
+
+
+    public String getUid_empresa() {
+        return uid_empresa;
+    }
+
+    public void setUid_empresa(String uid_empresa) {
+        this.uid_empresa = uid_empresa;
     }
 
     public String getFecha_publicada() {
@@ -47,27 +32,39 @@ public class Favoritos
         this.fecha_publicada = fecha_publicada;
     }
 
-    public String getFoto() {
-        return foto;
+    public String getNombre_puesto() {
+        return nombre_puesto;
     }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
+    public void setNombre_puesto(String nombre_puesto) {
+        this.nombre_puesto = nombre_puesto;
     }
 
-    public String getPuesto() {
-        return puesto;
+
+    public String getTurno() {
+        return turno;
     }
 
-    public void setPuesto(String puesto) {
-        this.puesto = puesto;
+    public void setTurno(String turno) {
+        this.turno = turno;
     }
 
-    public String getUid_empresa() {
-        return uid_empresa;
+    public String getEmpresa() {
+        return empresa;
     }
 
-    public void setUid_empresa(String uid_empresa) {
-        this.uid_empresa = uid_empresa;
+
+
+
+    @Override
+    public String toString() {
+        return "Favoritos{" +
+                "foto='" + foto + '\'' +
+                ", nombre_puesto='" + nombre_puesto + '\'' +
+                ", empresa='" + empresa + '\'' +
+                ", fecha_publicada= '" + fecha_publicada + '\'' +
+                ",turno" + turno+
+                '}';
     }
+
 }

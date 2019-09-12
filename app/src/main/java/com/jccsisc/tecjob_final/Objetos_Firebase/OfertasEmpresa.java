@@ -9,12 +9,13 @@ public class OfertasEmpresa
 
 
 
-    public OfertasEmpresa(String foto, String fecha_publicada, String nombre_puesto, String turno, String empresa) {
+    public OfertasEmpresa(String foto, String fecha_publicada, String nombre_puesto, String turno, String empresa, String uid_oferta) {
         this.foto = foto;
         this.fecha_publicada = fecha_publicada;
         this.nombre_puesto = nombre_puesto;
         this.turno = turno;
         this.empresa = empresa;
+        this.uid_oferta = uid_oferta;
     }
 
     public String getRazon_social() {

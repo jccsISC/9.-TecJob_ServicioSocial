@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView_imgEmpresa"
     android:layout_width="match_parent"
     android:layout_height="@dimen/height_cardEmpresas_245"
     android:layout_marginTop="@dimen/marginStart_txt_desplegable_5"
     android:layout_marginBottom="@dimen/marginStart_txt_desplegable_5"
+    android:layout_marginStart="@dimen/marginStart_txt_desplegable_5"
+    android:layout_marginEnd="@dimen/marginStart_txt_desplegable_5"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    >
+    app:cardCornerRadius="4dp">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/background_tbn_borde_procesos">
 
         <!--con centerCrop la imagen no se distorciona-->
         <ImageView
             android:id="@+id/imgVw_empresaCard"
             android:layout_width="match_parent"
+            android:layout_marginTop="2dp"
             android:layout_height="@dimen/height_img_empresa_170"
             android:padding="@dimen/padding_imgEmpresa_3"
             android:scaleType="centerCrop"
@@ -38,9 +41,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
+                android:layout_marginTop="5dp"
                 android:paddingStart="@dimen/paddingStart_cardEmpresa_5"
                 android:textStyle="bold"
                 android:singleLine="true"
+                android:layout_marginEnd="@dimen/padding_imgEmpresa_3"
+                android:layout_marginStart="@dimen/padding_imgEmpresa_3"
                 android:background="@color/colorBlack_transparent"
                 android:textSize="@dimen/font_Size_nomEmpresa_24"
                 />
@@ -52,7 +58,7 @@
                 >
 
                 <LinearLayout
-                    android:layout_width="280dp"
+                    android:layout_width="270dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     >
@@ -69,7 +75,7 @@
                             android:textColor="@color/colorGray1"
                             android:paddingStart="@dimen/paddingStart_cardEmpresa_5"
                             android:singleLine="true"
-                            android:textSize="16dp"
+                            android:textSize="14dp"
                             android:textStyle="bold"
                             />
 
@@ -171,11 +177,12 @@
                     <Button
                         android:id="@+id/btnVw_GuardarOferta"
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:layout_height="35dp"
                         android:background="@drawable/background_tbn_guardar"
                         android:text="@string/btn_guardarVacant"
                         android:textColor="@android:color/white"
-                        android:textSize="12dp"
+                        android:textSize="11dp"
+                        android:layout_gravity="center"
                         android:paddingStart="3dp"
                         android:paddingEnd="3dp"
                         android:layout_marginEnd="3dp"
@@ -192,12 +199,7 @@
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_viewLineaContac_1"
-            android:layout_gravity="bottom"
-            android:background="@color/colorPrimary"
-            />
+
     </FrameLayout>
 
 
