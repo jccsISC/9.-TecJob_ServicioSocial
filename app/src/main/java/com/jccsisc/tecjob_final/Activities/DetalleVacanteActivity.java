@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewAnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,9 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.jccsisc.tecjob_final.Fragments.HomeFragment;
-import com.jccsisc.tecjob_final.Modelos.Proceso_Modelo;
-import com.jccsisc.tecjob_final.Objetos_Firebase.InfoEmpresa;
+import com.jccsisc.tecjob_final.Objetos_Firebase.Proceso_Modelo;
 import com.jccsisc.tecjob_final.Objetos_Firebase.ModeloAlumno;
 import com.jccsisc.tecjob_final.Objetos_Firebase.OfertasEmpresa;
 import com.jccsisc.tecjob_final.R;

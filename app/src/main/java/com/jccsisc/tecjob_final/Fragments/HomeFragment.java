@@ -8,26 +8,22 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.ArrayMap;
-import android.util.Log;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.jccsisc.tecjob_final.Adapters.Empresa_Adapter;
+import com.jccsisc.tecjob_final.Adapters.Oferta_Adapter;
 import com.jccsisc.tecjob_final.Objetos_Firebase.OfertasEmpresa;
 import com.jccsisc.tecjob_final.R;
-import com.jccsisc.tecjob_final.ValidacionUsuario;
 import com.jccsisc.tecjob_final.VariablesGlobales;
 
 import java.util.ArrayList;
@@ -37,7 +33,7 @@ public class HomeFragment extends Fragment {
 
     private ArrayList<OfertasEmpresa> ofertasEmpresa = new ArrayList<>();
     private ArrayList<OfertasEmpresa> ofertasEmpresaFavoritos = new ArrayList<>();
-    private Empresa_Adapter empresa_adapter;
+    private Oferta_Adapter oferta_adapter;
 
     DatabaseReference myRef;
     FirebaseAuth mAuth;
@@ -55,10 +51,8 @@ public class HomeFragment extends Fragment {
 
         //con esto detecto al usuario actual
         mAuth = FirebaseAuth.getInstance();
-        String uid = mAuth.getUid();
+        final String uid = mAuth.getUid();
 
-        //obtenemos la db de firebase
-        obtenerUsuario(uid);
 
         //le damos valores al recycler
         RecyclerView recyclerEmpresas = view.findViewById(R.id.rcyVw_empresas);
@@ -66,9 +60,21 @@ public class HomeFragment extends Fragment {
         lim.setOrientation(RecyclerView.VERTICAL);
         recyclerEmpresas.setLayoutManager(lim);
 
-        empresa_adapter = new Empresa_Adapter(ofertasEmpresa, getActivity(), R.layout.cardview_empresas);
+        oferta_adapter = new Oferta_Adapter(ofertasEmpresa, getActivity(), R.layout.cardview_empresas);
 
-        recyclerEmpresas.setAdapter(empresa_adapter);
+        recyclerEmpresas.setAdapter(oferta_adapter);
+
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //obtenemos la db de firebase
+                obtenerUsuario(uid);
+                oferta_adapter.showShimmer=false;
+                oferta_adapter.notifyDataSetChanged();
+            }
+        },5000);
 
         return view;
     }
@@ -131,7 +137,7 @@ public class HomeFragment extends Fragment {
 
                     HomeFragment.this.ofertasEmpresa.add(ofertasEmpresa);
                 }
-                empresa_adapter.notifyDataSetChanged();
+                oferta_adapter.notifyDataSetChanged();
 
 
             }

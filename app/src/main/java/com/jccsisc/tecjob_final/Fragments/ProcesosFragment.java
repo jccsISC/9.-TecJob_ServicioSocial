@@ -17,14 +17,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.jccsisc.tecjob_final.Adapters.Favoritos_Adapter;
 import com.jccsisc.tecjob_final.Adapters.Proceso_Adapter;
-import com.jccsisc.tecjob_final.Modelos.Proceso_Modelo;
-import com.jccsisc.tecjob_final.Objetos_Firebase.OfertasEmpresa;
+import com.jccsisc.tecjob_final.Objetos_Firebase.Proceso_Modelo;
 import com.jccsisc.tecjob_final.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ProcesosFragment extends Fragment {
 
