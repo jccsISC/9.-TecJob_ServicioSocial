@@ -64,8 +64,6 @@ public class HomeFragment extends Fragment {
 
         oferta_adapter = new Oferta_Adapter(ofertasEmpresa, getActivity(), R.layout.cardview_empresas);
 
-        recyclerEmpresas.setAdapter(oferta_adapter);
-
 
 
         new Handler().postDelayed(new Runnable() {
@@ -115,6 +113,7 @@ public class HomeFragment extends Fragment {
                     ofertasEmpresa.setUid_empresa(postSnapshot.getKey());
                     ofertasEmpresaFavoritos.add(ofertasEmpresa);
                 }
+                recyclerEmpresas.setAdapter(oferta_adapter);
 
             }
 
@@ -139,7 +138,8 @@ public class HomeFragment extends Fragment {
 
                     HomeFragment.this.ofertasEmpresa.add(ofertasEmpresa);
                 }
-                oferta_adapter.notifyDataSetChanged();
+//                oferta_adapter.notifyDataSetChanged();
+                recyclerEmpresas.setAdapter(oferta_adapter);
                 recyclerEmpresas.hideShimmerAdapter();
             }
 

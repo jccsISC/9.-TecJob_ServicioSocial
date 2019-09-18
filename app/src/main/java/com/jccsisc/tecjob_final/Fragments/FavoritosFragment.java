@@ -50,9 +50,6 @@ public class FavoritosFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         String uid = mAuth.getUid();
-
-        getFavoritos();
-
         //le damos valores al recycler
         recyclerFavoritos = view.findViewById(R.id.rcyVw_favoritos);
         LinearLayoutManager lim = new LinearLayoutManager(getContext());
@@ -62,7 +59,7 @@ public class FavoritosFragment extends Fragment {
         favorito_adapter = new Favoritos_Adapter(ofertasEmpresa, getActivity(), R.layout.cardview_favoritos);
 
         recyclerFavoritos.setAdapter(favorito_adapter);
-
+        getFavoritos();
 
         return view;
     }

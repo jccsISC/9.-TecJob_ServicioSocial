@@ -41,8 +41,6 @@
         android:id="@+id/rcyVw_empresas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
-        >
-    </com.mikelau.views.shimmer.ShimmerRecyclerViewX>
+        android:background="@android:color/white"/>
 </LinearLayout>
 
