@@ -25,6 +25,7 @@ import com.jccsisc.tecjob_final.Adapters.Oferta_Adapter;
 import com.jccsisc.tecjob_final.Objetos_Firebase.OfertasEmpresa;
 import com.jccsisc.tecjob_final.R;
 import com.jccsisc.tecjob_final.VariablesGlobales;
+import com.mikelau.views.shimmer.ShimmerRecyclerViewX;
 
 import java.util.ArrayList;
 
@@ -37,6 +38,7 @@ public class HomeFragment extends Fragment {
 
     DatabaseReference myRef;
     FirebaseAuth mAuth;
+    ShimmerRecyclerViewX recyclerEmpresas;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -55,7 +57,7 @@ public class HomeFragment extends Fragment {
 
 
         //le damos valores al recycler
-        RecyclerView recyclerEmpresas = view.findViewById(R.id.rcyVw_empresas);
+        recyclerEmpresas = view.findViewById(R.id.rcyVw_empresas);
         LinearLayoutManager lim = new LinearLayoutManager(getContext());
         lim.setOrientation(RecyclerView.VERTICAL);
         recyclerEmpresas.setLayoutManager(lim);
@@ -127,7 +129,7 @@ public class HomeFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 ofertasEmpresa.clear();
-
+                recyclerEmpresas.showShimmerAdapter();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
                  //   all(postSnapshot.getKey().toString());
@@ -138,8 +140,7 @@ public class HomeFragment extends Fragment {
                     HomeFragment.this.ofertasEmpresa.add(ofertasEmpresa);
                 }
                 oferta_adapter.notifyDataSetChanged();
-
-
+                recyclerEmpresas.hideShimmerAdapter();
             }
 
             @Override

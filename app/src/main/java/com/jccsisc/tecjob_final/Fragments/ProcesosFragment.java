@@ -20,13 +20,14 @@ import com.google.firebase.database.ValueEventListener;
 import com.jccsisc.tecjob_final.Adapters.Proceso_Adapter;
 import com.jccsisc.tecjob_final.Objetos_Firebase.Proceso_Modelo;
 import com.jccsisc.tecjob_final.R;
+import com.mikelau.views.shimmer.ShimmerRecyclerViewX;
 
 import java.util.ArrayList;
 
 public class ProcesosFragment extends Fragment {
 
 
-    private RecyclerView rcyVw_procesos;
+    private ShimmerRecyclerViewX rcyVw_procesos;
 
     private ArrayList<Proceso_Modelo> procesos = new ArrayList<>();
     private Proceso_Adapter procesos_adapter;
@@ -55,6 +56,7 @@ public class ProcesosFragment extends Fragment {
 
     public void getPostulaciones(){
 
+        rcyVw_procesos.showShimmerAdapter();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         database.getReference()
                 .child("DB_Alumnos/"+ FirebaseAuth.getInstance().getCurrentUser().getUid() + "/postulaciones")
@@ -68,7 +70,7 @@ public class ProcesosFragment extends Fragment {
                             procesos.add(Proceso_Modelo);
                         }
                         procesos_adapter.notifyDataSetChanged();
-
+                        rcyVw_procesos.hideShimmerAdapter();
                     }
 
                     @Override

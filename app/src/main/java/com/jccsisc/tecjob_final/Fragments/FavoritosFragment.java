@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.jccsisc.tecjob_final.Adapters.Favoritos_Adapter;
 import com.jccsisc.tecjob_final.Objetos_Firebase.OfertasEmpresa;
 import com.jccsisc.tecjob_final.R;
+import com.mikelau.views.shimmer.ShimmerRecyclerViewX;
 
 import java.util.ArrayList;
 
@@ -34,6 +35,7 @@ public class FavoritosFragment extends Fragment {
 
     DatabaseReference myRef;
     FirebaseAuth mAuth;
+    ShimmerRecyclerViewX recyclerFavoritos;
 
     public FavoritosFragment() {
         // Required empty public constructor
@@ -52,7 +54,7 @@ public class FavoritosFragment extends Fragment {
         getFavoritos();
 
         //le damos valores al recycler
-        RecyclerView recyclerFavoritos = view.findViewById(R.id.rcyVw_favoritos);
+        recyclerFavoritos = view.findViewById(R.id.rcyVw_favoritos);
         LinearLayoutManager lim = new LinearLayoutManager(getContext());
         lim.setOrientation(RecyclerView.VERTICAL);
         recyclerFavoritos.setLayoutManager(lim);
@@ -73,6 +75,7 @@ public class FavoritosFragment extends Fragment {
 
 //    //Metodo para ofertas
     public void getFavoritos(){
+        recyclerFavoritos.showShimmerAdapter();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         database.getReference()
                 .child("DB_Alumnos/"+ mAuth.getUid() + "/favoritos")
@@ -86,7 +89,7 @@ public class FavoritosFragment extends Fragment {
                     FavoritosFragment.this.ofertasEmpresa.add(ofertasEmpresa);
                 }
                 favorito_adapter.notifyDataSetChanged();
-
+                recyclerFavoritos.hideShimmerAdapter();
             }
 
             @Override
