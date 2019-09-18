@@ -42,6 +42,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
     implementation 'com.nightonke:boommenu:2.1.1'
+    implementation 'com.facebook.shimmer:shimmer:0.4.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -2,19 +2,25 @@ package com.jccsisc.tecjob_final.Objetos_Firebase;
 
 public class OfertasEmpresa
 {
-    String fecha_publicada,nombre_puesto,turno, empresa, uid_empresa, foto, status, uid_oferta, razon_social, habilidades, requisitos, domicilio, salario_mensual, contacto, desc_puesto;
+    String fecha_publicada,nombre_puesto,turno
+            , empresa, uid_empresa, foto, status
+            , uid_oferta, razon_social, habilidades,
+            requisitos, domicilio, salario_mensual
+            , contacto, desc_puesto;
+
     boolean favorito;
 
     public  OfertasEmpresa(){}
 
 
 
-    public OfertasEmpresa(String foto, String fecha_publicada, String nombre_puesto, String turno, String empresa) {
+    public OfertasEmpresa(String foto, String fecha_publicada, String nombre_puesto, String turno, String empresa, String uid_oferta) {
         this.foto = foto;
         this.fecha_publicada = fecha_publicada;
         this.nombre_puesto = nombre_puesto;
         this.turno = turno;
         this.empresa = empresa;
+        this.uid_oferta = uid_oferta;
     }
 
     public String getRazon_social() {

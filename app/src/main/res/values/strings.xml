@@ -21,7 +21,7 @@
     <string name="textView_VacanteDispo">Demostrador</string>
     <string name="textView_tiempoVacan">2</string>
 
-    <string name="txt_titleVacante">Vacante: </string>
+    <string name="txt_titleVacante">Vacante</string>
     <string name="txt_fechaPublicado">Publicado:</string>
     <string name="textView_cantidadVacantes">4</string>
     <string name="txt_Postulate">Postúlate</string>
@@ -81,7 +81,7 @@
     <string name="textView_EstatusTrabajo">Si</string>
     <string name="txt_Experiencia_Laboral">Experiencia Laboral</string>
     <string name="textView_Experiencia">En ventas, chofer..</string>
-    <string name="txt_Habilidades">Habilidades:</string>
+    <string name="txt_Habilidades">Habilidades</string>
     <string name="textView_Habilidades">Facilidad de palabra,</string>
     <string name="txt_HorarioDispo">Horario Disponible</string>
     <string name="textView_HorarioDispo">Solo los fines de semana</string>
@@ -145,7 +145,7 @@
     <string name="txt_recuperaContra">Recuperar Tu Contraseña</string>
     <string name="btn_reset">Enviar</string>
     <string name="nomVacane">Gerente</string>
-    <string name="txt_sueldo">Salario:</string>
+    <string name="txt_sueldo">Salario: $ </string>
     <string name="salario">$6,000.00</string>
     <string name="txt_horario">Horario:</string>
     <string name="txt_horarioJob">Medio Tiempo</string>
@@ -157,7 +157,7 @@
     <string name="txt_vacante">Cajero</string>
     <string name="descripcion">Garantizar las operaciones de una unidad de caja, efectuando actividades de recepción, entrega y custodia de dinero en efectivo, cheques, giros y demás documentos de valor, a fin de lograr la recaudación de ingresos a la institución y la cancelación de los pagos que correspondan a través de caja.</string>
     <string name="txt_habilid">Habilidades en Matemáticas</string>
-    <string name="txt_requisitos">Requisitos:</string>
+    <string name="txt_requisitos">Requisitos</string>
     <string name="txt_requisit">Habilidad para comunicarte, Aptitud para las matemáticas, ser una persona observadora, capacidad para aprender</string>
     <string name="txt_salario">$7000.00</string>
     <string name="btn_postulate">Postulate</string>

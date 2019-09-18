@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/background_degradado"
+    android:background="@android:color/white"
     tools:context=".Fragments.FavoritosFragment"
     >
 
@@ -36,17 +36,12 @@
 
     </LinearLayout>
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/rcyVw_procesos"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:background="@android:color/white"-->
-<!--        >-->
-    <com.mikelau.views.shimmer.ShimmerRecyclerViewX
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcyVw_procesos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white">
-
-    </com.mikelau.views.shimmer.ShimmerRecyclerViewX>
+        android:background="@android:color/white"
+        android:layout_marginBottom="20dp"
+        >
+    </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

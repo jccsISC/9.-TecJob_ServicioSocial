@@ -3,15 +3,11 @@ package com.jccsisc.tecjob_final.Fragments;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
-import android.service.media.MediaBrowserService;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -37,26 +33,23 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.jccsisc.tecjob_final.Activities.MenuPrincipalActivity;
-import com.jccsisc.tecjob_final.Objetos_Firebase.Alumno;
 import com.jccsisc.tecjob_final.R;
+import com.jccsisc.tecjob_final.ValidacionUsuario;
 import com.squareup.picasso.Picasso;
 
-import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.xml.transform.Result;
-
 public class EditarFragment extends Fragment {
 
-    private EditText edt_ControlNum,edt_Name,edt_hbd,edt_age,edt_phoneNum,edt_colony,edt_street,edt_experience,edt_skills,edt_horaDisp,edt_nss;
+    private EditText edt_ControlNum,edt_Name,edt_hbd
+            ,edt_age,edt_phoneNum,edt_colony,edt_street
+            ,edt_experience,edt_skills,edt_horaDisp,edt_nss;
     private Spinner sp_Carrera, sp_Semestre;
     private RadioButton rb_Matutino, rb_Vespertino, rb_Mixto, rb_Si, rb_No;
     private Button btn_save;
     private ImageView btn_Imagen;
 
-    private Uri filePath;
-    private final  int PICK_IMAGE_REQUEST = 71;
     private static final int GALERY_INTENT=1;
 
     //creamos la referencia
@@ -126,12 +119,9 @@ public class EditarFragment extends Fragment {
             public void onClick(View view) {
                 //para abrir la galeria del dispositivo
                 Intent intent =  new Intent(Intent.ACTION_PICK);
-
                 //para este caso abarca todas las extensiones de imagenes
                 intent.setType("image/*");
                 startActivityForResult(intent, GALERY_INTENT);
-
-
             }
         });
 
@@ -147,7 +137,7 @@ public class EditarFragment extends Fragment {
 
 
         return view;
-    }
+    }//onCreate
 
 
 
@@ -157,8 +147,6 @@ public class EditarFragment extends Fragment {
 
         if(requestCode==GALERY_INTENT)
         {
-
-
             final Uri uri = data.getData();
             StorageReference filePath = myStorage.child("foto_perfil").child(uri.getLastPathSegment());
 
@@ -175,6 +163,7 @@ public class EditarFragment extends Fragment {
         }
 
     }
+
 
     //Metodo para obtener el usuario de firebase
     public void obtenerUsario(String uid)
@@ -197,7 +186,7 @@ public class EditarFragment extends Fragment {
                     String calle        = dataSnapshot.child("calle").getValue().toString();
                     String experiencia  = dataSnapshot.child("experiencia").getValue().toString();
                     String habilidades  = dataSnapshot.child("habilidades").getValue().toString();
-                    String horariosDispo = dataSnapshot.child("horariosDispo").getValue().toString();
+                    String horariosDispo= dataSnapshot.child("horariosDispo").getValue().toString();
                     String carrera      = dataSnapshot.child("carrera").getValue().toString();
                     String semestre     = dataSnapshot.child("semestre").getValue().toString();
                     String turno        = dataSnapshot.child("turno").getValue().toString();
@@ -263,6 +252,7 @@ public class EditarFragment extends Fragment {
     //Metodo para guardar los datos
     public void actualizarDatos()
     {
+        ValidacionUsuario v = new ValidacionUsuario();
         //actualizar los datos
         String noControl     = edt_ControlNum.getText().toString();
         String nombre        = edt_Name.getText().toString();
@@ -285,15 +275,19 @@ public class EditarFragment extends Fragment {
         String turno         = " ";
         String statusTrabajo= " ";
 
+        if(!TextUtils.isEmpty(noControl)){all("Ingrese su No Control"); return;}
+        if(TextUtils.isEmpty(nombre)){all("Ingrese su nombre completo"); return;}
+        if(v.validaionNombre(nombre)){all("Ingrese su nombre completo"); return;}
+
+
+
         if(rb_statusM.equals(true)){turno = "Matutino";}
         if(rb_statusV.equals(true)){turno = "Vespertino";}
         if(rb_statusMix.equals(true)){turno = "Mixto";}
         if(rb_statusS.equals(true)){statusTrabajo = "Si";}
         if(rb_statusN.equals(true)){statusTrabajo = "No";}
 
-        if(!TextUtils.isEmpty(nombre))
-        {
-            //String id = myRef.push().getKey(); con esto creamos un nuevo nodo
+         //String id = myRef.push().getKey(); con esto creamos un nuevo nodo
             String id = mAuth.getUid();//con este le decimos a donde guarde
 
             Map<String, Object> alumnoMap = new HashMap<>();
@@ -324,12 +318,6 @@ public class EditarFragment extends Fragment {
                 }
             });
 
-
-
-        }else
-        {
-            all("Ingrese su Nombre Completo");
-        }
 
     }//fin guardarDatos
 

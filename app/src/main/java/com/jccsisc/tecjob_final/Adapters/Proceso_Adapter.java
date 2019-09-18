@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.jccsisc.tecjob_final.Modelos.Proceso_Modelo;
+import com.jccsisc.tecjob_final.Objetos_Firebase.Proceso_Modelo;
 import com.jccsisc.tecjob_final.R;
 import com.squareup.picasso.Picasso;
 

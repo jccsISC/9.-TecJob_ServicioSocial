@@ -9,21 +9,21 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.jccsisc.tecjob_final.Activities.DetalleVacanteActivity;
-import com.jccsisc.tecjob_final.Modelos.Proceso_Modelo;
+import com.jccsisc.tecjob_final.Objetos_Firebase.Proceso_Modelo;
 import com.jccsisc.tecjob_final.Objetos_Firebase.ModeloAlumno;
 import com.jccsisc.tecjob_final.Objetos_Firebase.OfertasEmpresa;
 import com.jccsisc.tecjob_final.R;
@@ -32,10 +32,14 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.OfertasViewHolder>
+public class Oferta_Adapter extends RecyclerView.Adapter<Oferta_Adapter.OfertasViewHolder>
 {
     private DatabaseReference myRef;
     FirebaseAuth mAuth;
+
+    public Boolean showShimmer = true;
+    int SHIMMER_ITEM_NUMBER = 5; //mientras esta cargando
+
 
     //creamos una lista de empresas
     List<OfertasEmpresa> ofertas_Modelo;
@@ -43,7 +47,7 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
     private Activity activity;
 
     //constructor
-    public Empresa_Adapter(List<OfertasEmpresa> empresa_modelos, Activity activity, int resource)
+    public Oferta_Adapter(List<OfertasEmpresa> empresa_modelos, Activity activity, int resource)
     {
         this.ofertas_Modelo = empresa_modelos;
         this.activity = activity;
@@ -58,8 +62,6 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
 
         OfertasViewHolder holder = new OfertasViewHolder(v);
 
-
-
         return holder;
     }
 
@@ -71,6 +73,26 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
         //optenemos la posicion de la lista
         final OfertasEmpresa empresa_modelo = ofertas_Modelo.get(position);
         final OfertasEmpresa ofertasEmpresa = ofertas_Modelo.get(position);
+/*
+        if(showShimmer)
+        {
+            ofertasViewHolder.cardViewEmpresa.startShimmer();
+
+        }else
+        {
+            ofertasViewHolder.cardViewEmpresa.stopShimmer();
+            ofertasViewHolder.cardViewEmpresa.setShimmer(null);
+            ofertasViewHolder.nomEmpresa.setBackground(null);
+            ofertasViewHolder.nomEmpresa.setText(ofertas_Modelo.get(position).getEmpresa());
+            Picasso.get().load(empresa_modelo.getFoto())
+                    .into(ofertasViewHolder.img_empresa);
+
+        }
+
+*/
+
+
+
 
         ofertasViewHolder.nomEmpresa.setText(empresa_modelo.getEmpresa());
         ofertasViewHolder.nomVacante.setText(empresa_modelo.getNombre_puesto());
@@ -83,8 +105,8 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
         //obtenemos la db de firebase
 
         myRef = FirebaseDatabase.getInstance().getReference();
-        int index = ofertasViewHolder.getAdapterPosition();
-        final String id = ofertas_Modelo.get(index).getUid_empresa();
+//        int index = ofertasViewHolder.getAdapterPosition();
+//        final String id = ofertas_Modelo.get(index).getUid_empresa();
 
 
         Picasso.get().load(empresa_modelo.getFoto())
@@ -94,18 +116,21 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
             @Override
             public void onClick(View view) {
 
-                VariablesGlobales.empresa = empresa_modelo.getEmpresa();
-                VariablesGlobales.nombre_puesto= empresa_modelo.getNombre_puesto();
-                VariablesGlobales.turno = empresa_modelo.getTurno();
-                VariablesGlobales.razon_social = empresa_modelo.getRazon_social();
-                VariablesGlobales.contacto = empresa_modelo.getContacto();
-                VariablesGlobales.domicilio = empresa_modelo.getDomicilio();
-                VariablesGlobales.descripcion_puesto = empresa_modelo.getDesc_puesto();
-                VariablesGlobales.habilidades = empresa_modelo.getHabilidades();
-                VariablesGlobales.requisitos = empresa_modelo.getRequisitos();
-                VariablesGlobales.salario_mensual = empresa_modelo.getSalario_mensual();
+//                VariablesGlobales.empresa = empresa_modelo.getEmpresa();
+//                VariablesGlobales.nombre_puesto= empresa_modelo.getNombre_puesto();
+//                VariablesGlobales.turno = empresa_modelo.getTurno();
+//                VariablesGlobales.razon_social = empresa_modelo.getRazon_social();
+//                VariablesGlobales.contacto = empresa_modelo.getContacto();
+//                VariablesGlobales.domicilio = empresa_modelo.getDomicilio();
+//                VariablesGlobales.descripcion_puesto = empresa_modelo.getDesc_puesto();
+//                VariablesGlobales.habilidades = empresa_modelo.getHabilidades();
+//                VariablesGlobales.requisitos = empresa_modelo.getRequisitos();
+//                VariablesGlobales.salario_mensual = empresa_modelo.getSalario_mensual();
                 VariablesGlobales.uid_oferta = empresa_modelo.getUid_oferta();
-                VariablesGlobales.foto = empresa_modelo.getFoto();
+
+//                VariablesGlobales.foto = empresa_modelo.getFoto();
+
+//                alt(VariablesGlobales.uid_oferta);
                 Intent intent = new Intent(activity, DetalleVacanteActivity.class);
 
                 activity.startActivity(intent);
@@ -124,22 +149,20 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
 
                 if(isChk==true)
                 {
-
-                    String fecha_publicada,nombre_puesto,turno, empresa, uid_empresa, foto;
+                    String fecha_publicada,nombre_puesto,turno, empresa, uid_empresa, foto, uidoferta;
                     foto    = empresa_modelo.getFoto();
                     empresa = empresa_modelo.getEmpresa();
                     fecha_publicada = empresa_modelo.getFecha_publicada();
                     nombre_puesto = empresa_modelo.getNombre_puesto();
                     turno = empresa_modelo.getTurno();
                     uid_empresa = empresa_modelo.getUid_empresa();
+                    uidoferta = empresa_modelo.getUid_oferta();
 
                     String id = mAuth.getUid();//con este le decimos a donde guarde
 
-                    OfertasEmpresa favorito = new OfertasEmpresa(foto,fecha_publicada,nombre_puesto,turno,empresa);
+                    OfertasEmpresa favorito = new OfertasEmpresa(foto,fecha_publicada,nombre_puesto,turno,empresa,uidoferta);
 
                     myRef.child("DB_Alumnos").child(id).child("favoritos").child(uid_empresa).setValue(favorito);
-                    //  all("Guardado");*/
-
 
                     Snackbar.make(view,"Agregado a Favoritos",Snackbar.LENGTH_SHORT).show();
 
@@ -148,21 +171,7 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
                 if(isChk==false)
                 {
 
-                    String fecha_publicada,nombre_puesto,turno, empresa, uid_empresa, foto;
-                    foto    = empresa_modelo.getFoto();
-                    empresa = empresa_modelo.getEmpresa();
-                    nombre_puesto = empresa_modelo.getNombre_puesto();
-                    fecha_publicada = empresa_modelo.getFecha_publicada();
-                    turno = empresa_modelo.getTurno();
-                    uid_empresa = empresa_modelo.getUid_empresa();
-
-                    String id = mAuth.getUid();//con este le decimos a donde guarde
-
-                    OfertasEmpresa favorito = new OfertasEmpresa(foto,fecha_publicada,nombre_puesto,turno,empresa);
-
-                    myRef.child("DB_Alumnos").child(id).child("favoritos").child(uid_empresa).removeValue();
-                    //  all("Guardado");*/
-
+                    myRef.child("DB_Alumnos").child(mAuth.getUid()).child("favoritos").child(VariablesGlobales.uid_oferta).removeValue();
 
                     Snackbar.make(view,"Removido de Favoritos",Snackbar.LENGTH_SHORT).show();
                 }
@@ -212,6 +221,10 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
 
     }
 
+    public void alt(String mensaje){
+        Toast.makeText(activity,mensaje,Toast.LENGTH_SHORT).show();
+    }
+
 
 
     //cremos el tamaño del recycler
@@ -223,7 +236,7 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
             return ofertas_Modelo.size();
         }
 
-        return 0;
+        return 0; //retorna 5 seg cargando, despues la lista
     }
 
     //Primer clase que tenemos q creamos nuestra innerclas
@@ -235,7 +248,7 @@ public class Empresa_Adapter extends RecyclerView.Adapter<Empresa_Adapter.Oferta
         private TextView nomVacante;
         private TextView horaPublicada;
         private TextView turnoVacante;
-        private CardView cardViewEmpresa;
+        private ShimmerFrameLayout cardViewEmpresa;
         public Button btn_postularse;
         private ImageView img_empresa;
         private CheckBox check_favorito;

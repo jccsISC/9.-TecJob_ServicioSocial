@@ -46,15 +46,22 @@ public class FavoritosFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_favoritos, container, false);
 
-        //le damos valores al recycler
-        RecyclerView recyclerEmpresas = view.findViewById(R.id.rcyVw_favoritos);
-        LinearLayoutManager lim = new LinearLayoutManager(getContext());
-        lim.setOrientation(RecyclerView.VERTICAL);
-        recyclerEmpresas.setLayoutManager(lim);
-        favorito_adapter = new Favoritos_Adapter(ofertasEmpresa, getActivity(), R.layout.cardview_empresas);
-        recyclerEmpresas.setAdapter(favorito_adapter);
+        mAuth = FirebaseAuth.getInstance();
+        String uid = mAuth.getUid();
 
         getFavoritos();
+
+        //le damos valores al recycler
+        RecyclerView recyclerFavoritos = view.findViewById(R.id.rcyVw_favoritos);
+        LinearLayoutManager lim = new LinearLayoutManager(getContext());
+        lim.setOrientation(RecyclerView.VERTICAL);
+        recyclerFavoritos.setLayoutManager(lim);
+
+        favorito_adapter = new Favoritos_Adapter(ofertasEmpresa, getActivity(), R.layout.cardview_favoritos);
+
+        recyclerFavoritos.setAdapter(favorito_adapter);
+
+
         return view;
     }
 
@@ -62,18 +69,20 @@ public class FavoritosFragment extends Fragment {
 
 
 
+
+
 //    //Metodo para ofertas
     public void getFavoritos(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         database.getReference()
-                .child("DB_Alumnos/"+ FirebaseAuth.getInstance().getCurrentUser().getUid() + "/favoritos")
+                .child("DB_Alumnos/"+ mAuth.getUid() + "/favoritos")
                 .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ofertasEmpresa.clear();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     OfertasEmpresa ofertasEmpresa = postSnapshot.getValue(OfertasEmpresa.class);
-                    ofertasEmpresa.setUid_empresa(postSnapshot.getKey().toString());
+                    ofertasEmpresa.setUid_empresa(postSnapshot.getKey());
                     FavoritosFragment.this.ofertasEmpresa.add(ofertasEmpresa);
                 }
                 favorito_adapter.notifyDataSetChanged();
