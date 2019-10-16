@@ -1,6 +1,7 @@
 package com.jccsisc.tecjob_final.Adapters;
 
 import android.app.Activity;
+
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -111,31 +112,31 @@ public class Oferta_Adapter extends RecyclerView.Adapter<Oferta_Adapter.OfertasV
         Picasso.get().load(empresa_modelo.getFoto())
                 .into(ofertasViewHolder.img_empresa);
 
-//        ofertasViewHolder.cardViewEmpresa.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-////                VariablesGlobales.empresa = empresa_modelo.getEmpresa();
-////                VariablesGlobales.nombre_puesto= empresa_modelo.getNombre_puesto();
-////                VariablesGlobales.turno = empresa_modelo.getTurno();
-////                VariablesGlobales.razon_social = empresa_modelo.getRazon_social();
-////                VariablesGlobales.contacto = empresa_modelo.getContacto();
-////                VariablesGlobales.domicilio = empresa_modelo.getDomicilio();
-////                VariablesGlobales.descripcion_puesto = empresa_modelo.getDesc_puesto();
-////                VariablesGlobales.habilidades = empresa_modelo.getHabilidades();
-////                VariablesGlobales.requisitos = empresa_modelo.getRequisitos();
-////                VariablesGlobales.salario_mensual = empresa_modelo.getSalario_mensual();
-//                VariablesGlobales.uid_oferta = empresa_modelo.getUid_oferta();
-//
-////                VariablesGlobales.foto = empresa_modelo.getFoto();
-//
-////                alt(VariablesGlobales.uid_oferta);
-//                Intent intent = new Intent(activity, DetalleVacanteActivity.class);
-//
-//                activity.startActivity(intent);
-//
-//            }
-//        });
+        ofertasViewHolder.cardViewEmpresa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+//                VariablesGlobales.empresa = empresa_modelo.getEmpresa();
+//                VariablesGlobales.nombre_puesto= empresa_modelo.getNombre_puesto();
+//                VariablesGlobales.turno = empresa_modelo.getTurno();
+//                VariablesGlobales.razon_social = empresa_modelo.getRazon_social();
+//                VariablesGlobales.contacto = empresa_modelo.getContacto();
+//                VariablesGlobales.domicilio = empresa_modelo.getDomicilio();
+//                VariablesGlobales.descripcion_puesto = empresa_modelo.getDesc_puesto();
+//                VariablesGlobales.habilidades = empresa_modelo.getHabilidades();
+//                VariablesGlobales.requisitos = empresa_modelo.getRequisitos();
+//                VariablesGlobales.salario_mensual = empresa_modelo.getSalario_mensual();
+                VariablesGlobales.uid_oferta = empresa_modelo.getUid_oferta();
+
+//                VariablesGlobales.foto = empresa_modelo.getFoto();
+
+//                alt(VariablesGlobales.uid_oferta);
+                Intent intent = new Intent(activity, DetalleVacanteActivity.class);
+
+                activity.startActivity(intent);
+
+            }
+        });
 
 
         ofertasViewHolder.check_favorito.setSelected(true);
@@ -247,7 +248,7 @@ public class Oferta_Adapter extends RecyclerView.Adapter<Oferta_Adapter.OfertasV
         private TextView nomVacante;
         private TextView horaPublicada;
         private TextView turnoVacante;
-//        private ShimmerFrameLayout cardViewEmpresa;
+        private CardView cardViewEmpresa;
         public Button btn_postularse;
         private ImageView img_empresa;
         private CheckBox check_favorito;
@@ -263,7 +264,7 @@ public class Oferta_Adapter extends RecyclerView.Adapter<Oferta_Adapter.OfertasV
             this.horaPublicada = itemView.findViewById(R.id.txtVw_timePublicado);
             this.turnoVacante  = itemView.findViewById(R.id.txtVw_horarioEmpresa);
             this.turnoVacante.setSelected(true);
-//            this.cardViewEmpresa=itemView.findViewById(R.id.cardView_imgEmpresa);
+            this.cardViewEmpresa=itemView.findViewById(R.id.cardView_imgEmpresa);
             this.btn_postularse= itemView.findViewById(R.id.btnVw_GuardarOferta);
             this.img_empresa = itemView.findViewById(R.id.imgVw_empresaCard);
 

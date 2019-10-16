@@ -12,8 +12,7 @@
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="4dp"
-    app:shimmer_duration="10000"
-    >
+    app:shimmer_duration="10000">
 
     <FrameLayout
         android:layout_width="match_parent"
