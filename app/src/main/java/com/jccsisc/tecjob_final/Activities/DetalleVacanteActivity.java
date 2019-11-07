@@ -60,7 +60,7 @@ public class DetalleVacanteActivity extends AppCompatActivity {
 
         myRef = FirebaseDatabase.getInstance().getReference();
 
-        //para que aparesca el back button ahora para que funcione nos vamos al manifest
+//        para que aparesca el back button ahora para que funcione nos vamos al manifest
         getSupportActionBar().setTitle("Detalle de la Oferta");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

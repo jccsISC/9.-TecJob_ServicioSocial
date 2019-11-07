@@ -1,12 +1,14 @@
 package com.jccsisc.tecjob_final.Fragments;
 
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +20,16 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
 import com.jccsisc.tecjob_final.R;
 import com.jccsisc.tecjob_final.ValidacionUsuario;
 import com.squareup.picasso.Picasso;
@@ -204,9 +210,14 @@ public class PerfilFragment extends Fragment {
                     edt_experience.setText(experiencia);
                     edt_skills.setText(habilidades);
                     edt_horaDisp.setText(horariosDispo);
-                    Picasso.get().load(foto)
-                            .into(img_Perfil);
 
+
+                    FirebaseStorage.getInstance().getReference(foto).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            Picasso.get().load(task.getResult()).resize(500, 300).into(img_Perfil);
+                        }
+                    });
                 }
 
             }
@@ -242,6 +253,7 @@ public class PerfilFragment extends Fragment {
             case "ELECTRO":
                 return 7;
             default:
+
                 return 0;
         }
     }//fin metodo Obtener Carrera

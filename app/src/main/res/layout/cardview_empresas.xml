@@ -25,7 +25,6 @@
             android:layout_width="match_parent"
             android:layout_marginTop="2dp"
             android:layout_height="@dimen/height_img_empresa_170"
-            android:background="@color/shimmer"
             android:padding="@dimen/padding_imgEmpresa_3"
             android:scaleType="fitXY"
             android:contentDescription="imagen empresa"
@@ -49,7 +48,6 @@
                 android:singleLine="true"
                 android:layout_marginEnd="@dimen/padding_imgEmpresa_3"
                 android:layout_marginStart="@dimen/padding_imgEmpresa_3"
-                android:background="@color/shimmer"
                 android:textSize="@dimen/font_Size_nomEmpresa_24"
                 />
 
@@ -92,7 +90,6 @@
                             android:paddingStart="@dimen/paddingStart_cardEmpresa_5"
                             android:textColor="@color/colorGray1"
                             android:textSize="14dp"
-                            android:background="@color/shimmer"
                             />
 
 
@@ -125,7 +122,6 @@
                             android:ellipsize="marquee"
                             android:marqueeRepeatLimit="1"
                             android:textColor="@color/colorGray1"
-                            android:background="@color/shimmer"
                             />
 
 
@@ -162,7 +158,6 @@
                             android:layout_marginStart="@dimen/paddingStart_cardEmpresa_5"
                             android:text="13:05"
                             android:textColor="@color/colorGray1"
-                            android:background="@color/shimmer"
                             />
 
 

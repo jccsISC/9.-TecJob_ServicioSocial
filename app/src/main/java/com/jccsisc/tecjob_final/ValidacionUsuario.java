@@ -19,7 +19,7 @@ public class ValidacionUsuario
         return estado;
     }
 
-    public boolean validaionNombre(String Nombre)
+    public boolean validacionNombre(String Nombre)
     {
         boolean estado = true;
         if (Nombre.length() > 45) {

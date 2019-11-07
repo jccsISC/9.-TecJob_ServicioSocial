@@ -5,7 +5,7 @@ android {
     compileSdkVersion 29
     defaultConfig {
         applicationId "com.jccsisc.tecjob_final"
-        minSdkVersion 23
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -43,6 +43,7 @@ dependencies {
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
     implementation 'com.nightonke:boommenu:2.1.1'
     implementation 'com.facebook.shimmer:shimmer:0.4.0'
+    implementation 'com.google.firebase:firebase-messaging:20.0.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

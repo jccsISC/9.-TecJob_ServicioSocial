@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,8 +22,10 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,6 +40,8 @@ import com.jccsisc.tecjob_final.R;
 import com.jccsisc.tecjob_final.ValidacionUsuario;
 import com.squareup.picasso.Picasso;
 
+import java.sql.Time;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -144,11 +149,11 @@ public class EditarFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode==GALERY_INTENT)
+        Log.i("resultCode", resultCode + "");
+        if(requestCode==GALERY_INTENT && resultCode == -1)
         {
             final Uri uri = data.getData();
-            StorageReference filePath = myStorage.child("foto_perfil").child(uri.getLastPathSegment());
+            StorageReference filePath = myStorage.child("foto_perfil").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
             filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -156,7 +161,15 @@ public class EditarFragment extends Fragment {
 
                     taskSnapshot.getStorage().getDownloadUrl();
 
-                    all("Se subió exitosamente la tu foto");
+
+                    myRef.child("DB_Alumnos").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .child("updated").setValue((int)System.currentTimeMillis())
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            all("Se subió exitosamente la tu foto");
+                        }
+                    });
 
                 }
             });
@@ -233,8 +246,13 @@ public class EditarFragment extends Fragment {
                     edt_skills.setText(habilidades);
                     edt_horaDisp.setText(horariosDispo);
                     edt_nss.setText(nss);
-                    Picasso.get().load(foto)
-                            .into(btn_Imagen);
+
+                    FirebaseStorage.getInstance().getReference(foto).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            Picasso.get().load(task.getResult()).resize(500, 300).into(btn_Imagen);
+                        }
+                    });
                 }
 
             }
@@ -263,7 +281,7 @@ public class EditarFragment extends Fragment {
         String calle         = edt_street.getText().toString();
         String experiencia   = edt_experience.getText().toString();
         String habilidades   = edt_skills.getText().toString();
-        String horariosDispo  = edt_horaDisp.getText().toString();
+        String horariosDispo = edt_horaDisp.getText().toString();
         String carrera       = sp_Carrera.getSelectedItem().toString();
         String semestre      = sp_Semestre.getSelectedItem().toString();
         String nss           = edt_nss.getText().toString();
@@ -274,13 +292,15 @@ public class EditarFragment extends Fragment {
         Boolean rb_statusN   = rb_No.isChecked();
         String turno         = " ";
         String statusTrabajo= " ";
+        long updated = new Date().getTime();
 
+/*
         if(!TextUtils.isEmpty(noControl)){all("Ingrese su No Control"); return;}
         if(TextUtils.isEmpty(nombre)){all("Ingrese su nombre completo"); return;}
-        if(v.validaionNombre(nombre)){all("Ingrese su nombre completo"); return;}
+        if(v.validacionNombre(nombre)){all("Ingrese su nombre completo"); return;}
 
 
-
+*/
         if(rb_statusM.equals(true)){turno = "Matutino";}
         if(rb_statusV.equals(true)){turno = "Vespertino";}
         if(rb_statusMix.equals(true)){turno = "Mixto";}
@@ -305,6 +325,7 @@ public class EditarFragment extends Fragment {
             alumnoMap.put("semestre",semestre);
             alumnoMap.put("statusTrabajo",statusTrabajo);
             alumnoMap.put("turno",turno);
+            alumnoMap.put("updated", updated);
 
             myRef.child("DB_Alumnos").child(id).updateChildren(alumnoMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override

@@ -8,6 +8,27 @@
     tools:context=".LoginActivity">
 
 
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/spin_kit"
+        style="@style/SpinKitView.ChasingDots"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="invisible"
+        app:SpinKit_Color="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.517" />
+
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,25 +49,27 @@
 
             <ImageView
                 android:id="@+id/LogoConfirmar"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_width="230dp"
+                android:layout_height="200dp"
                 android:layout_gravity="center"
+                android:elevation="4dp"
                 android:layout_marginTop="50dp"
-                android:background="@drawable/logotecgold" />
+                android:background="@drawable/logotecgold"
+                />
 
 
             <!--Agrupamos los componentes de entrada de datos-->
             <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/tilCorreo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="100dp"
                 android:theme="@style/EditTextGray">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editText_Correo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="silva.jccs18@gmail.com"
                     android:hint="@string/correo_Usuario"
                     android:inputType="textEmailAddress" />
 
@@ -54,6 +77,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilContrasena"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_Top_Campo_psw_30"
@@ -65,7 +89,6 @@
                     android:id="@+id/editText_Password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="12345678"
                     android:hint="@string/password"
                     android:inputType="textPassword"
                     android:maxLength="16" />
@@ -73,27 +96,12 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <TextView
-                android:id="@+id/textView_RecuperaPssw"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:padding="@dimen/padding_5"
-                android:shadowColor="@color/colorPrimary"
-                android:shadowDx="8"
-                android:shadowDy="8"
-                android:shadowRadius="15"
-                android:text="@string/textView_Toast_Recupera"
-                android:textColor="@android:color/black" />
-
             <Button
                 android:id="@+id/btnVw_login"
                 android:layout_width="@dimen/width_btn_login_250"
                 android:layout_height="@dimen/width_btn_modify_40"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/marginStart_btn_perfil_10"
-                android:layout_marginBottom="@dimen/marginTop_Perfil_30"
                 android:background="@drawable/selecter_btn_login"
                 android:shadowColor="@android:color/black"
                 android:shadowDx="8"
@@ -102,6 +110,23 @@
                 android:text="@string/btn_login"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/font_Size_txtContacto_17" />
+
+            <TextView
+                android:id="@+id/textView_RecuperaPssw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:padding="@dimen/padding_5"
+                android:layout_marginBottom="@dimen/marginTop_Perfil_30"
+                android:shadowColor="@color/colorPrimary"
+                android:shadowDx="8"
+                android:shadowDy="8"
+                android:shadowRadius="15"
+                android:text="@string/textView_Toast_Recupera"
+                android:textColor="@android:color/black" />
+
+
 
 
         </LinearLayout>

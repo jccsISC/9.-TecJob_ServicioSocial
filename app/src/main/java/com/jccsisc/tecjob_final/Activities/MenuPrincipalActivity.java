@@ -2,6 +2,7 @@ package com.jccsisc.tecjob_final.Activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import android.view.View;
@@ -13,6 +14,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 
 import android.view.MenuItem;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.jccsisc.tecjob_final.Fragments.ContactanosFragment;
 import com.jccsisc.tecjob_final.Fragments.FavoritosFragment;
 import com.jccsisc.tecjob_final.Fragments.HomeFragment;
@@ -78,7 +82,7 @@ public class MenuPrincipalActivity extends AppCompatActivity
         fab.setButtonEnum(ButtonEnum.Ham);
         fab.setPiecePlaceEnum(PiecePlaceEnum.HAM_2);
         fab.setButtonPlaceEnum(ButtonPlaceEnum.HAM_2);
-        fab.addBuilder(BuilderManager.getHamButtonBuilder("Home","Son las ofertas",R.drawable.ic_home));
+        fab.addBuilder(BuilderManager.getHamButtonBuilder("Home","Ver las ofertas",R.drawable.ic_home));
         fab.addBuilder(BuilderManager.getHamButtonBuilder("Procesos","Seguimiento de vacantes",R.drawable.ic_procesos));
 
         fab.setOnBoomListener(new OnBoomListener() {
@@ -303,7 +307,7 @@ public class MenuPrincipalActivity extends AppCompatActivity
 
     public void obtenerUsuario(String uid)
     {
-        myRef.child("DB_Alumnos").child(uid).addListenerForSingleValueEvent(new ValueEventListener()
+        myRef.child("DB_Alumnos").child(uid).addValueEventListener(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -322,8 +326,15 @@ public class MenuPrincipalActivity extends AppCompatActivity
                     txt_Nombre.setText(nombre);
                     txt_Carrera.setText(carrera);
 
-                    Picasso.get().load(foto)
-                        .into(imagenInfoPersonal);
+                    FirebaseStorage.getInstance().getReference(foto).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            Picasso.get().load(task.getResult()).resize(500, 300).into(imagenInfoPersonal);
+                        }
+                    });
+
+//                    Picasso.get().load(foto)
+//                        .into(imagenInfoPersonal);
                 }
 
             }

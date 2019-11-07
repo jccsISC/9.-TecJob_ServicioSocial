@@ -56,6 +56,8 @@ public class HomeFragment extends Fragment {
         final String uid = mAuth.getUid();
 
 
+
+
         //le damos valores al recycler
         recyclerEmpresas = view.findViewById(R.id.rcyVw_empresas);
         LinearLayoutManager lim = new LinearLayoutManager(getContext());
@@ -75,6 +77,7 @@ public class HomeFragment extends Fragment {
                 oferta_adapter.notifyDataSetChanged();
             }
         },5000);
+
 
         return view;
     }
@@ -110,7 +113,7 @@ public class HomeFragment extends Fragment {
                 ofertasEmpresa.clear();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     OfertasEmpresa ofertasEmpresa = postSnapshot.getValue(OfertasEmpresa.class);
-                    ofertasEmpresa.setUid_empresa(postSnapshot.getKey());
+//                    ofertasEmpresa.setUid_empresa(postSnapshot.getKey());
                     ofertasEmpresaFavoritos.add(ofertasEmpresa);
                 }
                 recyclerEmpresas.setAdapter(oferta_adapter);
@@ -131,7 +134,7 @@ public class HomeFragment extends Fragment {
                 recyclerEmpresas.showShimmerAdapter();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
-                 //   all(postSnapshot.getKey().toString());
+                 //   msj(postSnapshot.getKey().toString());
                     OfertasEmpresa ofertasEmpresa = postSnapshot.getValue(OfertasEmpresa.class);
                     ofertasEmpresa.setUid_empresa(postSnapshot.getKey());
                     ofertasEmpresa.setFavorito(esFavorito(postSnapshot.getKey()));
