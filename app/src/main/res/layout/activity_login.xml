@@ -8,6 +8,7 @@
     tools:context=".LoginActivity">
 
 
+
     <com.github.ybq.android.spinkit.SpinKitView
         android:id="@+id/spin_kit"
         style="@style/SpinKitView.ChasingDots"
